@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أم موفق للأكلات الشامية 🌹</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#14B8A6',
+                            dark: '#2DD4BF',
+                            accent: '#FBBF24',
+                            bgDark: '#0A0F14',
+                            cardDark: '#111827'
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        tajawal: ['Tajawal', 'sans-serif'],
+                        amiri: ['Amiri', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Leaflet OpenStreetMap CSS & JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(20, 184, 166, 0.15) 0%, transparent 60%);
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px rgba(20, 184, 166, 0.4);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .star-rating input { display: none; }
+        .star-rating label { cursor: pointer; color: #d1d5db; transition: color 0.2s; }
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input:checked ~ label { color: #f59e0b; }
+    </style>
+</head>
+<body class="font-cairo bg-gray-50 text-slate-900 dark:bg-brand-bgDark dark:text-slate-100 transition-colors duration-300 pb-20">
+
+    <!-- Header / Nav -->
+    <header class="sticky top-0 z-40 w-full glass-card border-b border-gray-200/50 dark:border-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <img src="logo.png" alt="أم موفق" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-brand-light dark:border-brand-dark glow-effect object-cover" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=150'">
+                <div>
+                    <h1 class="font-bold text-base sm:text-lg leading-tight text-brand-light dark:text-brand-dark">أم موفق</h1>
+                    <span class="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">للأكلات الشامية 🌹</span>
+                </div>
+            </a>
+
+            <!-- روابط الكومبيوتر -->
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold">
+                <a href="#hero" class="hover:text-brand-light transition">🏠 الرئيسية</a>
+                <a href="#menu" class="hover:text-brand-light transition">📖 القائمة</a>
+                <a href="#about" class="hover:text-brand-light transition">👩‍🍳 عن أم موفق</a>
+                <a href="#why-us" class="hover:text-brand-light transition">🌟 لماذا نحن؟</a>
+                <a href="#reviews" class="hover:text-brand-light transition">💬 الآراء والتقييمات</a>
+            </nav>
+
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button id="themeToggle" class="p-2 rounded-2xl bg-gray-200 dark:bg-gray-800 hover:scale-105 transition">
+                    <span id="themeIcon">🌙</span>
+                </button>
+
+                <button onclick="toggleCart()" class="relative p-2 rounded-2xl bg-brand-light/10 text-brand-light dark:text-brand-dark hover:bg-brand-light/20 transition flex items-center gap-1.5 font-bold text-xs sm:text-sm">
+                    🛒 <span>السلة</span>
+                    <span id="cartBadge" class="bg-brand-light text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
+                </button>
+
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-2xl bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 text-xl">
+                    ☰
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileNav" class="hidden lg:hidden border-t border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md px-4 py-3 space-y-2 text-sm font-semibold">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-light">🏠 الرئيسية</a>
+            <a href="#menu" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-light">📖 القائمة</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-light">👩‍🍳 عن أم موفق</a>
+            <a href="#why-us" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-light">🌟 لماذا نحن؟</a>
+            <a href="#reviews" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-light">💬 الآراء والتقييمات</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative py-12 lg:py-20 overflow-hidden hero-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
+            <div class="flex-1 text-center lg:text-right space-y-6">
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-2">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-light/10 text-brand-light dark:text-brand-dark text-xs sm:text-sm font-semibold">
+                        ✨ النكهة الدمشقية الأصيلة في الإمارات
+                    </div>
+                    <div class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs sm:text-sm font-bold animate-pulse">
+                        ⏰ يرجى تثبيت الطلب قبل 7 أيام من موعد التسليم
+                    </div>
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
+                    🍽️ أم موفق للأكلات الشامية 🌹
+                </h1>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl font-tajawal">
+                    من قلب دمشق إلى الإمارات... نقدم لكم أشهى المأكولات والمحاشي والكبب الشامية المصنوعة بكل حب ونظافة بيد أم موفق.
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                    <a href="#menu" class="px-8 py-4 rounded-2xl bg-brand-light dark:bg-brand-dark text-white font-bold hover:opacity-90 transition flex items-center gap-2 shadow-lg">
+                        📖 تصفح القائمة واطلب
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative flex-1 flex justify-center">
+                <div class="relative w-64 h-64 sm:w-80 sm:h-80">
+                    <img src="logo.png" alt="أم موفق" class="w-full h-full object-cover rounded-full border-4 border-brand-light shadow-2xl animate-float relative z-10" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=500'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center space-y-4 mb-8">
+            <h2 class="text-3xl font-bold">📖 قائمة الأطباق</h2>
+            <p class="text-gray-500 dark:text-gray-400">اختر أطباقك ثم اضغط على "أرسل طلبك"</p>
+            <div id="categoryFilter" class="flex flex-wrap gap-2 justify-center pt-2"></div>
+        </div>
+        <div id="menuGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+    </section>
+
+    <!-- Floating Action Button at Bottom -->
+    <div class="fixed bottom-4 left-0 right-0 z-30 px-4 flex justify-center pointer-events-none">
+        <button onclick="toggleCart()" class="pointer-events-auto px-8 py-4 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold rounded-full shadow-2xl flex items-center gap-3 hover:scale-105 active:scale-95 transition-all duration-300">
+            <span class="text-xl">📲</span>
+            <span>أرسل طلبك الآن</span>
+            <span id="floatingCartBadge" class="bg-white text-[#25D366] text-xs px-2 py-1 rounded-full font-black">0</span>
+        </button>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-100/50 dark:bg-gray-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
+            <img src="logo.png" alt="عن أم موفق" class="w-64 h-64 rounded-3xl object-cover border-4 border-brand-light shadow-xl" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=500'">
+            <div class="space-y-4 text-center md:text-right">
+                <h2 class="text-3xl font-bold">👩‍🍳 قصة مطبخ أم موفق</h2>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed font-tajawal">
+                    بدأت الحكاية من حارات دمشق القديمة، حيث الأسرار الشامية ونكهات الياسمين. تنقل أم موفق خبرتها الطويلة في إعداد أعرق المأكولات الشامية إلى سفرتكم في الإمارات، بلمسة بيتية دافئة ومكونات طازجة يُنتقى كل منها بعناية فائقة.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section id="why-us" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center mb-12">🌟 لماذا تختار أم موفق؟</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="glass-card p-6 rounded-2xl text-center space-y-3">
+                <div class="text-4xl">🥩</div>
+                <h3 class="font-bold text-lg">لحوم طازجة 100%</h3>
+                <p class="text-sm text-gray-500">نستخدم أجود أنواع اللحوم والخضار اليومية</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl text-center space-y-3">
+                <div class="text-4xl">🧼</div>
+                <h3 class="font-bold text-lg">نظافة بيتية</h3>
+                <p class="text-sm text-gray-500">أعلى معايير الهيجين والعناية بالتحضير</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl text-center space-y-3">
+                <div class="text-4xl">⚡</div>
+                <h3 class="font-bold text-lg">توصيل سريع</h3>
+                <p class="text-sm text-gray-500">يصلك الطعام ساخناً وفي الوقت المحدد</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl text-center space-y-3">
+                <div class="text-4xl">❤️</div>
+                <h3 class="font-bold text-lg">نكهة شامية أصيلة</h3>
+                <p class="text-sm text-gray-500">وصفات موروثة أباً عن جد</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section & Interactive Rating Form -->
+    <section id="reviews" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        <div class="text-center space-y-2">
+            <h2 class="text-3xl font-bold">💬 آراء وتقييمات زبائننا</h2>
+            <p class="text-gray-500 dark:text-gray-400">شاركنا رأيك وتجربتك مع مأكولات أم موفق 🌹</p>
+        </div>
+
+        <!-- قائمة التقييمات المعروضة -->
+        <div id="reviewsList" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+
+        <!-- نموذج إضافة تقييم جديد -->
+        <div class="max-w-xl mx-auto glass-card p-6 sm:p-8 rounded-3xl space-y-4 shadow-xl">
+            <h3 class="text-xl font-bold text-center">✍️ أضف تقييمك الخاص</h3>
+            <form id="reviewForm" onsubmit="addReview(event)" class="space-y-4 text-sm">
+                <div>
+                    <label class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">الاسم الكريم</label>
+                    <input type="text" id="reviewerName" required placeholder="مثال: أحمد الدمشقي" class="w-full p-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">التقييم بالنجمات</label>
+                    <div class="star-rating flex flex-row-reverse justify-end gap-1 text-2xl">
+                        <input type="radio" id="star5" name="rating" value="5" required><label for="star5">★</label>
+                        <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                        <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                        <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                        <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">تعليقك أو رأيك بالطعام</label>
+                    <textarea id="reviewerComment" rows="3" required placeholder="اكتب انطباعك عن الجودة والنكهة..." class="w-full p-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"></textarea>
+                </div>
+                <button type="submit" class="w-full py-3 bg-brand-light hover:bg-brand-light/90 text-white font-bold rounded-xl shadow-md transition">
+                    إرسال التقييم للمراجعة ✨
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer & Admin Button -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
+            <img src="logo.png" alt="أم موفق" class="w-16 h-16 rounded-full mx-auto border-2 border-brand-light object-cover" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=150'">
+            <h3 class="text-lg font-bold text-white">أم موفق للأكلات الشامية 🌹</h3>
+            <p class="text-xs text-gray-500">جميع الحقوق محفوظة © 2026 أم موفق</p>
+            <div>
+                <button onclick="openAdminPanel()" class="text-xs text-gray-600 hover:text-brand-light underline transition">
+                    🔒 لوحة إدارة التقييمات
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Panel Modal -->
+    <div id="adminModal" class="fixed inset-0 z-50 invisible flex items-center justify-center p-4">
+        <div onclick="closeAdminPanel()" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div class="relative bg-white dark:bg-gray-900 rounded-3xl p-6 max-w-2xl w-full z-10 space-y-4 shadow-2xl max-h-[85vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b pb-3 border-gray-200 dark:border-gray-800">
+                <h3 class="font-bold text-lg">⚙️ لوحة موافقة وحذف التقييمات</h3>
+                <button onclick="closeAdminPanel()" class="text-xl font-bold">✕</button>
+            </div>
+            <div id="adminReviewsList" class="space-y-3"></div>
+        </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 invisible transition-all duration-300">
+        <div onclick="toggleCart()" class="absolute inset-0 bg-black/50 backdrop-blur-sm opacity-0 transition-opacity" id="cartOverlay"></div>
+        <div class="absolute inset-y-0 left-0 w-full sm:w-[450px] bg-white dark:bg-brand-cardDark shadow-2xl transform -translate-x-full transition-transform duration-300 flex flex-col" id="cartContent">
+            
+            <div class="p-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <img src="logo.png" class="w-8 h-8 rounded-full" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=100'">
+                    <h3 class="font-bold text-lg">إرسال الطلب 🛒</h3>
+                </div>
+                <button onclick="toggleCart()" class="text-2xl font-bold hover:text-red-500">✕</button>
+            </div>
+
+            <div class="bg-amber-500/10 border-b border-amber-500/20 p-2.5 text-center text-xs text-amber-600 dark:text-amber-400 font-bold">
+                ⏰ تنبيه: يرجى تقديم الطلب قبل 7 أيام من موعد التسليم
+            </div>
+
+            <div id="cartItems" class="p-4 space-y-3 max-h-48 overflow-y-auto border-b border-gray-200 dark:border-gray-800"></div>
+
+            <div class="p-4 flex-1 overflow-y-auto space-y-4 bg-gray-50 dark:bg-gray-900/50">
+                <div class="flex justify-between items-center text-lg font-bold pb-2 border-b border-gray-200 dark:border-gray-700">
+                    <span>إجمالي الطلب:</span>
+                    <span id="cartTotal" class="text-brand-light dark:text-brand-dark">0 د.إ</span>
+                </div>
+
+                <form id="orderForm" onsubmit="sendOrderToWhatsApp(event)" class="space-y-3 text-sm">
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">الاسم الكامل *</label>
+                        <input type="text" id="custName" required placeholder="أدخل اسمك الكريم" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">رقم الهاتف *</label>
+                        <input type="tel" id="custPhone" required placeholder="050xxxxxxx" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">الإمارة *</label>
+                        <select id="custEmirate" required class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
+                            <option value="🏙️ دبي">🏙️ إمارة دبي</option>
+                            <option value="🏖️ الشارقة">🏖️ إمارة الشارقة</option>
+                            <option value="🌊 عجمان">🌊 إمارة عجمان</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">العنوان بالتفصيل (اسم الشارع / البناية / الشقة)</label>
+                        <textarea id="custAddress" rows="2" placeholder="أدخل بيانات العنوان التوضيحية" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">ملاحظات خاصة بالطلب (اختياري)</label>
+                        <textarea id="orderNotes" rows="2" placeholder="مثال: بدون ثوم، موعد التسليم المتوقع، درجة الفلفل..." class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"></textarea>
+                    </div>
+
+                    <div class="pt-2">
+                        <label class="block text-xs font-semibold mb-2 text-gray-600 dark:text-gray-400">تحديد الموقع الدقيق (اختياري)</label>
+                        <div class="grid grid-cols-2 gap-2 mb-2">
+                            <button type="button" id="useGpsBtn" class="p-2.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl font-bold text-xs flex items-center justify-center gap-1 hover:border-brand-light transition">
+                                🎯 استخدام موقعي الحالي
+                            </button>
+                            <button type="button" id="toggleMapBtn" class="p-2.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl font-bold text-xs flex items-center justify-center gap-1 hover:border-brand-light transition">
+                                📍 تحديد الموقع على الخريطة
+                            </button>
+                        </div>
+                        
+                        <div id="mapPicker" class="w-full h-52 rounded-xl border border-gray-300 dark:border-gray-700 hidden overflow-hidden relative mt-2"></div>
+                        <div id="locStatus" class="hidden text-xs text-red-500 font-bold mt-2 text-center">📍 تم تحديد الموقع بنجاح</div>
+                    </div>
+
+                    <button type="submit" class="w-full py-3.5 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold rounded-xl shadow-lg flex items-center justify-center gap-2 text-base mt-2">
+                        <span>إرسال الطلب عبر الواتساب</span>
+                        <span>📲</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Application Logic -->
+    <script>
+        const MENU_ITEMS = [
+            { id: 1, name: "كوسا محشي شامية", category: "محاشي", price: 35, image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=500" },
+            { id: 2, name: "باذنجان محشي باللحم", category: "محاشي", price: 35, image: "https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?w=500" },
+            { id: 3, name: "ورق عنب بالزيت / يبرق", category: "محاشي", price: 30, image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=500" },
+            { id: 4, name: "كبة مقلية شامية (دزينة)", category: "كبب", price: 40, image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500" },
+            { id: 5, name: "كبة لبنية متقنة", category: "كبب", price: 45, image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=500" },
+            { id: 6, name: "كبة بالسفرجلية", category: "كبب", price: 50, image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=500" },
+            { id: 7, name: "شاكرية باللحمة واللبن", category: "أطباق رئيسية", price: 45, image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=500" },
+            { id: 8, name: "فريكة بالدجاج واللوز", category: "أطباق رئيسية", price: 40, image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=500" },
+            { id: 9, name: "تبولة شامية بالرمان", category: "مقبلات", price: 18, image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500" },
+            { id: 10, name: "فتوش بالمحمّص والسمّاق", category: "مقبلات", price: 18, image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500" },
+            { id: 11, name: "حمص بطحينة وزيت زيتون", category: "مقبلات", price: 15, image: "https://images.unsplash.com/photo-1577968897966-3d4325b36b61?w=500" },
+            { id: 12, name: "بقلاوة بالفستق الحلبي", category: "حلويات", price: 35, image: "https://images.unsplash.com/photo-1519676867240-f03562e64548?w=500" }
+        ];
+
+        // التقييمات المبدئية
+        const initialReviews = [
+            { id: 1, name: "أسامة الدمشقي", stars: 5, comment: "أطيب كبة لبنية دقتها بالإمارات! نفس طعم الشام بالضبط.", approved: true },
+            { id: 2, name: "م. سارة الخالد", stars: 5, comment: "المحاشي مرتبة والتوصيل كان سريع والطعام ساخن جداً.", approved: true },
+            { id: 3, name: "أبو فهد", stars: 5, comment: "يعطيكم العافية أم موفق، شغل بيتي نظيف ويسوّد الوجه بالمناسبات.", approved: true }
+        ];
+
+        let reviewsData = JSON.parse(localStorage.getItem('um_mowaffak_reviews')) || initialReviews;
+
+        function saveReviews() {
+            localStorage.setItem('um_mowaffak_reviews', JSON.stringify(reviewsData));
+            renderPublicReviews();
+        }
+
+        function renderPublicReviews() {
+            const list = document.getElementById('reviewsList');
+            const approvedReviews = reviewsData.filter(r => r.approved);
+            
+            if (approvedReviews.length === 0) {
+                list.innerHTML = `<div class="col-span-3 text-center text-gray-400 py-4">لا توجد تقييمات معروضة حالياً.</div>`;
+                return;
+            }
+
+            list.innerHTML = approvedReviews.map(r => `
+                <div class="glass-card p-6 rounded-2xl space-y-3">
+                    <div class="text-amber-400">${'⭐'.repeat(r.stars)}</div>
+                    <p class="text-sm">"${r.comment}"</p>
+                    <div class="font-bold text-xs text-gray-400">- ${r.name}</div>
+                </div>
+            `).join('');
+        }
+
+        function addReview(e) {
+            e.preventDefault();
+            const name = document.getElementById('reviewerName').value.trim();
+            const comment = document.getElementById('reviewerComment').value.trim();
+            const ratingInput = document.querySelector('input[name="rating"]:checked');
+            
+            if (!ratingInput) {
+                alert('يرجى اختيار عدد النجمات للتقييم.');
+                return;
+            }
+
+            const newReview = {
+                id: Date.now(),
+                name: name,
+                stars: parseInt(ratingInput.value),
+                comment: comment,
+                approved: false
+            };
+
+            reviewsData.push(newReview);
+            saveReviews();
+            document.getElementById('reviewForm').reset();
+            alert('شكراً لك! تم إرسال تقييمك بنجاح، وسوف يتم عرضه على الموقع بعد مراجعة الإدارة ❤️');
+        }
+
+        function openAdminPanel() {
+            const pwd = prompt('أدخل كلمة السر الخاصة بالإدارة:');
+            if (pwd === 'ysra') {
+                renderAdminReviews();
+                document.getElementById('adminModal').classList.remove('invisible');
+            } else if(pwd !== null) {
+                alert('كلمة السر غير صحيحة!');
+            }
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminModal').classList.add('invisible');
+        }
+
+        function renderAdminReviews() {
+            const container = document.getElementById('adminReviewsList');
+            if (reviewsData.length === 0) {
+                container.innerHTML = `<p class="text-center text-gray-400">لا يوجد تقييمات للتحكم بها.</p>`;
+                return;
+            }
+
+            container.innerHTML = reviewsData.map(r => `
+                <div class="p-4 rounded-xl border ${r.approved ? 'border-green-500/30 bg-green-500/5' : 'border-amber-500/30 bg-amber-500/5'} flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-sm">${r.name}</span>
+                            <span class="text-amber-400">${'⭐'.repeat(r.stars)}</span>
+                            <span class="px-2 py-0.5 rounded-full font-bold ${r.approved ? 'bg-green-500/20 text-green-600' : 'bg-amber-500/20 text-amber-600'}">
+                                ${r.approved ? 'منشور' : 'بانتظار الموافقة'}
+                            </span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">"${r.comment}"</p>
+                    </div>
+                    <div class="flex items-center gap-2 self-end sm:self-center">
+                        ${!r.approved ? `<button onclick="approveReview(${r.id})" class="px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg">قبول ونشر ✅</button>` : ''}
+                        <button onclick="deleteReview(${r.id})" class="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg">حذف 🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function approveReview(id) {
+            const rev = reviewsData.find(r => r.id === id);
+            if (rev) {
+                rev.approved = true;
+                saveReviews();
+                renderAdminReviews();
+            }
+        }
+
+        function deleteReview(id) {
+            if (confirm('هل أنت متأكد من حذف هذا التقييم؟')) {
+                reviewsData = reviewsData.filter(r => r.id !== id);
+                saveReviews();
+                renderAdminReviews();
+            }
+        }
+
+        let cart = {};
+        let activeCategory = "الكل";
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileNav').classList.toggle('hidden');
+        }
+
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeIcon.textContent = '☀️';
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeIcon.textContent = '🌙';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+                themeIcon.textContent = '🌙';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+                themeIcon.textContent = '☀️';
+            }
+        });
+
+        function renderMenu() {
+            const categories = ["الكل", ...new Set(MENU_ITEMS.map(i => i.category))];
+            const filterContainer = document.getElementById('categoryFilter');
+            filterContainer.innerHTML = categories.map(c => `
+                <button onclick="setCategory('${c}')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition ${activeCategory === c ? 'bg-brand-light text-white shadow-md' : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}">
+                    ${c}
+                </button>
+            `).join('');
+
+            const grid = document.getElementById('menuGrid');
+            const itemsToDisplay = activeCategory === "الكل" ? MENU_ITEMS : MENU_ITEMS.filter(i => i.category === activeCategory);
+            
+            grid.innerHTML = itemsToDisplay.map(item => `
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col hover:border-brand-light/50 transition">
+                    <img src="${item.image}" alt="${item.name}" class="h-44 w-full object-cover">
+                    <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+                        <div>
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-light/10 text-brand-light dark:text-brand-dark">${item.category}</span>
+                            <h3 class="font-bold text-base mt-1">${item.name}</h3>
+                        </div>
+                        <div class="flex items-center justify-between pt-2">
+                            <span class="font-black text-lg text-brand-light dark:text-brand-dark">${item.price} <small class="text-xs">د.إ</small></span>
+                            <button onclick="addToCart(${item.id})" class="px-3 py-1.5 rounded-xl bg-brand-light hover:bg-brand-light/90 text-white font-bold text-xs flex items-center gap-1 shadow-sm">
+                                <span>إضافة</span> ➕
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function setCategory(cat) {
+            activeCategory = cat;
+            renderMenu();
+        }
+
+        function addToCart(id) {
+            if (cart[id]) {
+                cart[id].qty += 1;
+            } else {
+                const item = MENU_ITEMS.find(i => i.id === id);
+                cart[id] = { ...item, qty: 1 };
+            }
+            updateCartUI();
+        }
+
+        function changeQty(id, delta) {
+            if (cart[id]) {
+                cart[id].qty += delta;
+                if (cart[id].qty <= 0) delete cart[id];
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const count = Object.values(cart).reduce((sum, item) => sum + item.qty, 0);
+            const total = Object.values(cart).reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            document.getElementById('cartBadge').textContent = count;
+            document.getElementById('floatingCartBadge').textContent = count;
+            document.getElementById('cartTotal').textContent = `${total} د.إ`;
+
+            const cartContainer = document.getElementById('cartItems');
+            if (Object.keys(cart).length === 0) {
+                cartContainer.innerHTML = `<div class="text-center text-gray-400 py-8 text-xs">سلتك فارغة حالياً.. أضف ما تشتهي من القائمة 😋</div>`;
+            } else {
+                cartContainer.innerHTML = Object.values(cart).map(item => `
+                    <div class="flex items-center justify-between bg-gray-100 dark:bg-gray-800 p-2.5 rounded-xl text-xs">
+                        <div class="font-bold flex-1">${item.name}</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-brand-light dark:text-brand-dark font-black">${item.price * item.qty} د.إ</span>
+                            <div class="flex items-center border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-900">
+                                <button onclick="changeQty(${item.id}, -1)" class="px-2 py-0.5 font-bold hover:bg-gray-200 dark:hover:bg-gray-800">-</button>
+                                <span class="px-2 font-bold">${item.qty}</span>
+                                <button onclick="changeQty(${item.id}, 1)" class="px-2 py-0.5 font-bold hover:bg-gray-200 dark:hover:bg-gray-800">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('cartDrawer');
+            const overlay = document.getElementById('cartOverlay');
+            const content = document.getElementById('cartContent');
+
+            if (drawer.classList.contains('invisible')) {
+                drawer.classList.remove('invisible');
+                setTimeout(() => {
+                    overlay.classList.remove('opacity-0');
+                    content.classList.remove('-translate-x-full');
+                }, 10);
+            } else {
+                overlay.classList.add('opacity-0');
+                content.classList.add('-translate-x-full');
+                setTimeout(() => {
+                    drawer.classList.add('invisible');
+                }, 300);
+            }
+        }
+
+        /* ==================== منطق الخريطة والتحديد المحدث ==================== */
+        let pickedLat = null, pickedLng = null;
+        let leafletMap = null, leafletMarker = null;
+        const locStatus = document.getElementById('locStatus');
+        const mapPickerEl = document.getElementById('mapPicker');
+
+        function setPickedLocation(lat, lng) {
+            pickedLat = lat; 
+            pickedLng = lng;
+            
+            if (locStatus) {
+                locStatus.classList.remove('hidden');
+            }
+            
+            if (leafletMap) {
+                if (leafletMarker) {
+                    leafletMarker.setLatLng([lat, lng]);
+                } else {
+                    leafletMarker = L.marker([lat, lng]).addTo(leafletMap);
+                }
+                leafletMap.setView([lat, lng], 16);
+            }
+        }
+
+        function initMapIfNeeded() {
+            if (leafletMap) return;
+
+            leafletMap = L.map(mapPickerEl).setView([25.2048, 55.2708], 11); // إحداثيات افتراضية بالإمارات
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap'
+            }).addTo(leafletMap);
+
+            leafletMap.on('click', (e) => {
+                setPickedLocation(e.latlng.lat, e.latlng.lng);
+            });
+
+            if (pickedLat !== null && pickedLng !== null) {
+                setPickedLocation(pickedLat, pickedLng);
+            }
+        }
+
+        document.getElementById('toggleMapBtn').addEventListener('click', () => {
+            const isOpening = mapPickerEl.classList.toggle('hidden');
+            
+            if (!mapPickerEl.classList.contains('hidden')) {
+                setTimeout(() => {
+                    initMapIfNeeded();
+                    if (leafletMap) leafletMap.invalidateSize();
+                }, 100);
+            }
+        });
+
+        document.getElementById('useGpsBtn').addEventListener('click', () => {
+            if (!navigator.geolocation) {
+                alert('المتصفح لا يدعم تحديد الموقع الحالي، الرجاء كتابة العنوان يدوياً.');
+                return;
+            }
+
+            const gpsBtn = document.getElementById('useGpsBtn');
+            const originalText = gpsBtn.innerHTML;
+            gpsBtn.innerText = "⏳ جاري جلب الموقع...";
+
+            // إظهار الخريطة فوراً لتهيئتها
+            mapPickerEl.classList.remove('hidden');
+            setTimeout(() => {
+                initMapIfNeeded();
+                if (leafletMap) leafletMap.invalidateSize();
+            }, 100);
+
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    gpsBtn.innerHTML = originalText;
+                    const { latitude, longitude } = pos.coords;
+                    setPickedLocation(latitude, longitude);
+                },
+                (err) => {
+                    gpsBtn.innerHTML = originalText;
+                    alert('تعذّر الوصول لموقعك الحالي، الرجاء السماح بالوصول للموقع أو تحديد المكان يدوياً.');
+                },
+                { enableHighAccuracy: true, timeout: 10000 }
+            );
+        });
+
+        function sendOrderToWhatsApp(e) {
+            e.preventDefault();
+            const keys = Object.keys(cart);
+            if (keys.length === 0) {
+                alert('السلة فارغة! أضف بضع الأطباق أولاً.');
+                return;
+            }
+
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const emirate = document.getElementById('custEmirate').value;
+            const address = document.getElementById('custAddress').value.trim();
+            const notes = document.getElementById('orderNotes').value.trim();
+
+            let total = Object.values(cart).reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            let msg = `مرحباً أم موفق 🌹 أرغب بطلب الآتي:%0A%0A`;
+            Object.values(cart).forEach(item => {
+                msg += `• ${item.name} × ${item.qty} = ${item.price * item.qty} د.إ%0A`;
+            });
+
+            msg += `%0A💰 *الإجمالي النهائي:* ${total} د.إ%0A`;
+            msg += `%0A📋 *بيانات الزبون:*`;
+            msg += `%0A👤 الاسم: ${encodeURIComponent(name)}`;
+            msg += `%0A📞 الهاتف: ${encodeURIComponent(phone)}`;
+            msg += `%0A📍 الإمارة: ${encodeURIComponent(emirate)}`;
+            if (address) msg += `%0A🏠 العنوان: ${encodeURIComponent(address)}`;
+            if (notes) msg += `%0A📝 ملاحظات الطلب: ${encodeURIComponent(notes)}`;
+            if (pickedLat !== null && pickedLng !== null) {
+                msg += `%0A🗺️ الموقع على الخريطة: https://maps.google.com/?q=${pickedLat},${pickedLng}`;
+            }
+
+            window.open(`https://wa.me/963930786656?text=${msg}`, '_blank');
+        }
+
+        renderMenu();
+        renderPublicReviews();
+        updateCartUI();
+    </script>
+</body>
+</html>
