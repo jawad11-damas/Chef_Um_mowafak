@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="scroll-smooth">
+<html lang="ar" dir="rtl" class="scroll-smooth" translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- منع متصفح Google Chrome من الترجمة التلقائية لمنع التعارض -->
+    <meta name="google" content="notranslate">
     <title>أم موفق للأكلات الشامية 🌹</title>
     <link rel="icon" type="image/png" href="logo.png">
     
@@ -73,7 +75,7 @@
         .star-rating input:checked ~ label { color: #f59e0b; }
     </style>
 </head>
-<body class="font-cairo bg-gray-50 text-slate-900 dark:bg-brand-bgDark dark:text-slate-100 transition-colors duration-300 pb-20">
+<body class="font-cairo bg-gray-50 text-slate-900 dark:bg-brand-bgDark dark:text-slate-100 transition-colors duration-300 pb-20 notranslate">
 
     <!-- Header / Nav -->
     <header class="sticky top-0 z-40 w-full glass-card border-b border-gray-200/50 dark:border-gray-800/50">
@@ -492,6 +494,9 @@
         function applyLanguage() {
             document.documentElement.lang = currentLang;
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+
+            // تعطيل ترجمة الكروم التلقائية لمنع التعارض
+            document.documentElement.setAttribute('translate', 'no');
 
             // تعديل الزر
             document.getElementById('langLabel').textContent = currentLang === 'ar' ? 'EN' : 'عربي';
