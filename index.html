@@ -238,7 +238,7 @@
             <form id="reviewForm" onsubmit="addReview(event)" class="space-y-4 text-sm">
                 <div>
                     <label data-i18n="reviewerNameLabel" class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">الاسم الكريم</label>
-                    <input type="text" id="reviewerName" required placeholder="مثال: أحمد الدمشقي" class="w-full p-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
+                    <input type="text" id="reviewerName" required data-i18n-placeholder="phReviewerName" placeholder="مثال: أحمد الدمشقي" class="w-full p-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
                 </div>
                 <div>
                     <label data-i18n="ratingStarLabel" class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">التقييم بالنجمات</label>
@@ -252,7 +252,7 @@
                 </div>
                 <div>
                     <label data-i18n="commentLabel" class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">تعليقك أو رأيك بالطعام</label>
-                    <textarea id="reviewerComment" rows="3" required placeholder="اكتب انطباعك عن الجودة والنكهة..." class="w-full p-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"></textarea>
+                    <textarea id="reviewerComment" rows="3" required data-i18n-placeholder="phComment" placeholder="اكتب انطباعك عن الجودة والنكهة..." class="w-full p-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"></textarea>
                 </div>
                 <button type="submit" data-i18n="submitReviewBtn" class="w-full py-3 bg-brand-light hover:bg-brand-light/90 text-white font-bold rounded-xl shadow-md transition">
                     إرسال التقييم للمراجعة ✨
@@ -315,7 +315,7 @@
                 <form id="orderForm" onsubmit="sendOrderToWhatsApp(event)" class="space-y-3 text-sm">
                     <div>
                         <label data-i18n="custNameLabel" class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">الاسم الكامل *</label>
-                        <input type="text" id="custName" required placeholder="أدخل اسمك الكريم" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
+                        <input type="text" id="custName" required data-i18n-placeholder="phName" placeholder="أدخل اسمك الكريم" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
                     </div>
                     <div>
                         <label data-i18n="custPhoneLabel" class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">رقم الهاتف *</label>
@@ -325,20 +325,20 @@
                     <div>
                         <label data-i18n="custEmirateLabel" class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">الإمارة *</label>
                         <select id="custEmirate" required class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
-                            <option value="🏙️ دبي">🏙️ إمارة دبي</option>
-                            <option value="🏖️ الشارقة">🏖️ إمارة الشارقة</option>
-                            <option value="🌊 عجمان">🌊 إمارة عجمان</option>
+                            <option value="🏙️ دبي" data-i18n="emDubai">🏙️ إمارة دبي</option>
+                            <option value="🏖️ الشارقة" data-i18n="emSharjah">🏖️ إمارة الشارقة</option>
+                            <option value="🌊 عجمان" data-i18n="emAjman">🌊 إمارة عجمان</option>
                         </select>
                     </div>
 
                     <div>
                         <label data-i18n="custAddressLabel" class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">العنوان بالتفصيل (اسم الشارع / البناية / الشقة)</label>
-                        <textarea id="custAddress" rows="2" placeholder="أدخل بيانات العنوان التوضيحية" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"></textarea>
+                        <textarea id="custAddress" rows="2" data-i18n-placeholder="phAddress" placeholder="أدخل بيانات العنوان التوضيحية" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"></textarea>
                     </div>
 
                     <div>
                         <label data-i18n="orderNotesLabel" class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">ملاحظات خاصة بالطلب (اختياري)</label>
-                        <textarea id="orderNotes" rows="2" placeholder="مثال: بدون ثوم، موعد التسليم المتوقع، درجة الفلفل..." class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"></textarea>
+                        <textarea id="orderNotes" rows="2" data-i18n-placeholder="phNotes" placeholder="مثال: بدون ثوم، موعد التسليم المتوقع، درجة الفلفل..." class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"></textarea>
                     </div>
 
                     <div class="pt-2">
@@ -423,7 +423,15 @@
                 currency: "د.إ",
                 addBtn: "إضافة ➕",
                 emptyCartMsg: "سلتك فارغة حالياً.. أضف ما تشتهي من القائمة 😋",
-                allCategory: "الكل"
+                allCategory: "الكل",
+                phName: "أدخل اسمك الكريم",
+                phAddress: "أدخل بيانات العنوان التوضيحية",
+                phNotes: "مثال: بدون ثوم، موعد التسليم المتوقع، درجة الفلفل...",
+                phReviewerName: "مثال: أحمد الدمشقي",
+                phComment: "اكتب انطباعك عن الجودة والنكهة...",
+                emDubai: "🏙️ إمارة دبي",
+                emSharjah: "🏖️ إمارة الشارقة",
+                emAjman: "🌊 إمارة عجمان"
             },
             en: {
                 brandName: "Um Mowaffak",
@@ -479,7 +487,15 @@
                 currency: "AED",
                 addBtn: "Add ➕",
                 emptyCartMsg: "Your cart is currently empty.. Add delicious food! 😋",
-                allCategory: "All"
+                allCategory: "All",
+                phName: "Enter your full name",
+                phAddress: "Enter detailed address information",
+                phNotes: "Example: No garlic, expected delivery time, spice level...",
+                phReviewerName: "Example: Ahmad Al-Damashqi",
+                phComment: "Write your feedback on quality and taste...",
+                emDubai: "🏙️ Dubai Emirate",
+                emSharjah: "🏖️ Sharjah Emirate",
+                emAjman: "🌊 Ajman Emirate"
             }
         };
 
@@ -506,6 +522,14 @@
                 const key = el.getAttribute('data-i18n');
                 if (TRANSLATIONS[currentLang][key]) {
                     el.textContent = TRANSLATIONS[currentLang][key];
+                }
+            });
+
+            // تحديث كافة عناصر الـ Placeholder
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (TRANSLATIONS[currentLang][key]) {
+                    el.placeholder = TRANSLATIONS[currentLang][key];
                 }
             });
 
@@ -875,7 +899,8 @@
 
             const name = document.getElementById('custName').value.trim();
             const phone = document.getElementById('custPhone').value.trim();
-            const emirate = document.getElementById('custEmirate').value;
+            const emirateSelect = document.getElementById('custEmirate');
+            const selectedEmirateText = emirateSelect.options[emirateSelect.selectedIndex].text;
             const address = document.getElementById('custAddress').value.trim();
             const notes = document.getElementById('orderNotes').value.trim();
 
@@ -890,7 +915,7 @@
             msg += `%0A📋 *${currentLang === 'ar' ? 'بيانات الزبون:' : 'Customer Details:'}*`;
             msg += `%0A👤 ${currentLang === 'ar' ? 'الاسم:' : 'Name:'} ${encodeURIComponent(name)}`;
             msg += `%0A📞 ${currentLang === 'ar' ? 'الهاتف:' : 'Phone:'} ${encodeURIComponent(phone)}`;
-            msg += `%0A📍 ${currentLang === 'ar' ? 'الإمارة:' : 'Emirate:'} ${encodeURIComponent(emirate)}`;
+            msg += `%0A📍 ${currentLang === 'ar' ? 'الإمارة:' : 'Emirate:'} ${encodeURIComponent(selectedEmirateText)}`;
             if (address) msg += `%0A🏠 ${currentLang === 'ar' ? 'العنوان:' : 'Address:'} ${encodeURIComponent(address)}`;
             if (notes) msg += `%0A📝 ${currentLang === 'ar' ? 'الملاحظات:' : 'Notes:'} ${encodeURIComponent(notes)}`;
             if (pickedLat !== null && pickedLng !== null) {
