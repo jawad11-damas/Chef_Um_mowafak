@@ -229,7 +229,7 @@
             <p data-i18n="reviewsSub" class="text-gray-500 dark:text-gray-400">شاركنا رأيك وتجربتك مع مأكولات أم موفق 🌹</p>
         </div>
 
-        <!-- قائمة التقييمات المعروضة -->
+        <!-- قائمة التقييمات المعروضة (من Firebase) -->
         <div id="reviewsList" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
 
         <!-- نموذج إضافة تقييم جديد -->
@@ -266,7 +266,7 @@
         <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
             <img src="logo.png" alt="أم موفق" class="w-16 h-16 rounded-full mx-auto border-2 border-brand-light object-cover" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=150'">
             <h3 data-i18n="brandName" class="text-lg font-bold text-white">أم موفق للأكلات الشامية 🌹</h3>
-            <p data-i18n="footerRights" class="text-xs text-gray-500">جميع الحقوق محفوظة © 2026 أم موفق</p>
+            <p data-i18n="footerRights" class="text-xs text-gray-500">تم بواسطة جواد | جميع الحقوق محفوظة © 2026 أم موفق</p>
             <div>
                 <button onclick="openAdminPanel()" data-i18n="adminPanelBtn" class="text-xs text-gray-600 hover:text-brand-light underline transition">
                     🔒 لوحة إدارة التقييمات
@@ -365,8 +365,23 @@
         </div>
     </div>
 
-    <!-- Script Application Logic -->
-    <script>
+    <!-- Script Application Logic & Firebase Integration -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot, doc, deleteDoc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCSGSltLawGH7MbjVPmna_qP9h0KaCWmdQ",
+            authDomain: "um-mowaffak.firebaseapp.com",
+            projectId: "um-mowaffak",
+            storageBucket: "um-mowaffak.firebasestorage.app",
+            messagingSenderId: "452777967878",
+            appId: "1:452777967878:web:f249f56bc67158ac8cde87"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
         /* ==================== نظام الترجمة لغة عربية / إنجليزية ==================== */
         const TRANSLATIONS = {
             ar: {
@@ -501,7 +516,7 @@
 
         let currentLang = localStorage.getItem('app_lang') || 'ar';
 
-        function toggleLanguage() {
+        window.toggleLanguage = function() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             localStorage.setItem('app_lang', currentLang);
             applyLanguage();
@@ -510,14 +525,11 @@
         function applyLanguage() {
             document.documentElement.lang = currentLang;
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-
-            // تعطيل ترجمة الكروم التلقائية لمنع التعارض
             document.documentElement.setAttribute('translate', 'no');
 
-            // تعديل الزر
-            document.getElementById('langLabel').textContent = currentLang === 'ar' ? 'EN' : 'عربي';
+            const langLabel = document.getElementById('langLabel');
+            if (langLabel) langLabel.textContent = currentLang === 'ar' ? 'EN' : 'عربي';
 
-            // تحديث كافة النصوص المحتوية على data-i18n
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (TRANSLATIONS[currentLang][key]) {
@@ -525,7 +537,6 @@
                 }
             });
 
-            // تحديث كافة عناصر الـ Placeholder
             document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
                 const key = el.getAttribute('data-i18n-placeholder');
                 if (TRANSLATIONS[currentLang][key]) {
@@ -533,12 +544,11 @@
                 }
             });
 
-            // إعادة رسم القائمة والسلة
             renderMenu();
             updateCartUI();
         }
 
-        /* ==================== قائمة المنتجات الشاملة والترجمة ==================== */
+        /* ==================== قائمة المنتجات الشاملة ==================== */
         const MENU_ITEMS = [
             { id: 1, name: { ar: "كوسا محشي شامية", en: "Syrian Stuffed Zucchini (Kousa)" }, category: { ar: "محاشي", en: "Mahshi" }, price: 35, image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=500" },
             { id: 2, name: { ar: "باذنجان محشي باللحم", en: "Stuffed Eggplant with Meat" }, category: { ar: "محاشي", en: "Mahshi" }, price: 35, image: "https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?w=500" },
@@ -554,23 +564,25 @@
             { id: 12, name: { ar: "بقلاوة بالفستق الحلبي", en: "Pistachio Baklava" }, category: { ar: "حلويات", en: "Desserts" }, price: 35, image: "https://images.unsplash.com/photo-1519676867240-f03562e64548?w=500" }
         ];
 
-        // التقييمات المبدئية
-        const initialReviews = [
-            { id: 1, name: "أسامة الدمشقي", stars: 5, comment: "أطيب كبة لبنية دقتها بالإمارات! نفس طعم الشام بالضبط.", approved: true },
-            { id: 2, name: "م. سارة الخالد", stars: 5, comment: "المحاشي مرتبة والتوصيل كان سريع والطعام ساخن جداً.", approved: true },
-            { id: 3, name: "أبو فهد", stars: 5, comment: "يعطيكم العافية أم موفق، شغل بيتي نظيف ويسوّد الوجه بالمناسبات.", approved: true }
-        ];
+        let activeCategory = "الكل";
 
-        let reviewsData = JSON.parse(localStorage.getItem('um_mowaffak_reviews')) || initialReviews;
+        // استماع وتحميل التقييمات بالوقت الفعلي من Firebase Firestore
+        let allReviewsCache = [];
 
-        function saveReviews() {
-            localStorage.setItem('um_mowaffak_reviews', JSON.stringify(reviewsData));
+        const qReviews = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
+        onSnapshot(qReviews, (snapshot) => {
+            allReviewsCache = [];
+            snapshot.forEach((docSnap) => {
+                allReviewsCache.push({ id: docSnap.id, ...docSnap.data() });
+            });
             renderPublicReviews();
-        }
+            renderAdminReviews();
+        });
 
-        function renderPublicReviews() {
+        window.renderPublicReviews = function() {
             const list = document.getElementById('reviewsList');
-            const approvedReviews = reviewsData.filter(r => r.approved);
+            if (!list) return;
+            const approvedReviews = allReviewsCache.filter(r => r.approved);
             
             if (approvedReviews.length === 0) {
                 list.innerHTML = `<div class="col-span-3 text-center text-gray-400 py-4">لا توجد تقييمات معروضة حالياً.</div>`;
@@ -578,15 +590,15 @@
             }
 
             list.innerHTML = approvedReviews.map(r => `
-                <div class="glass-card p-6 rounded-2xl space-y-3">
+                <div class="glass-card p-6 rounded-2xl space-y-3 shadow-md">
                     <div class="text-amber-400">${'⭐'.repeat(r.stars)}</div>
                     <p class="text-sm">"${r.comment}"</p>
                     <div class="font-bold text-xs text-gray-400">- ${r.name}</div>
                 </div>
             `).join('');
-        }
+        };
 
-        function addReview(e) {
+        window.addReview = async function(e) {
             e.preventDefault();
             const name = document.getElementById('reviewerName').value.trim();
             const comment = document.getElementById('reviewerComment').value.trim();
@@ -597,21 +609,23 @@
                 return;
             }
 
-            const newReview = {
-                id: Date.now(),
-                name: name,
-                stars: parseInt(ratingInput.value),
-                comment: comment,
-                approved: false
-            };
+            try {
+                await addDoc(collection(db, "reviews"), {
+                    name: name,
+                    stars: parseInt(ratingInput.value),
+                    comment: comment,
+                    approved: false,
+                    createdAt: new Date()
+                });
+                document.getElementById('reviewForm').reset();
+                alert(currentLang === 'ar' ? 'شكراً لك! تم إرسال تقييمك بنجاح، وسوف يتم عرضه بعد مراجعة الإدارة ❤️' : 'Thank you! Your review was submitted for review ❤️');
+            } catch (error) {
+                console.error("خطأ في إضافة التقييم:", error);
+                alert("حدث خطأ أثناء إرسال التقييم.");
+            }
+        };
 
-            reviewsData.push(newReview);
-            saveReviews();
-            document.getElementById('reviewForm').reset();
-            alert(currentLang === 'ar' ? 'شكراً لك! تم إرسال تقييمك بنجاح، وسوف يتم عرضه بعد مراجعة الإدارة ❤️' : 'Thank you! Your review was submitted for review ❤️');
-        }
-
-        function openAdminPanel() {
+        window.openAdminPanel = function() {
             const pwd = prompt(currentLang === 'ar' ? 'أدخل كلمة السر الخاصة بالإدارة:' : 'Enter Admin Password:');
             if (pwd === 'ysra') {
                 renderAdminReviews();
@@ -619,20 +633,21 @@
             } else if(pwd !== null) {
                 alert(currentLang === 'ar' ? 'كلمة السر غير صحيحة!' : 'Incorrect Password!');
             }
-        }
+        };
 
-        function closeAdminPanel() {
+        window.closeAdminPanel = function() {
             document.getElementById('adminModal').classList.add('invisible');
-        }
+        };
 
-        function renderAdminReviews() {
+        window.renderAdminReviews = function() {
             const container = document.getElementById('adminReviewsList');
-            if (reviewsData.length === 0) {
+            if (!container) return;
+            if (allReviewsCache.length === 0) {
                 container.innerHTML = `<p class="text-center text-gray-400">لا يوجد تقييمات للتحكم بها.</p>`;
                 return;
             }
 
-            container.innerHTML = reviewsData.map(r => `
+            container.innerHTML = allReviewsCache.map(r => `
                 <div class="p-4 rounded-xl border ${r.approved ? 'border-green-500/30 bg-green-500/5' : 'border-amber-500/30 bg-amber-500/5'} flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
                     <div class="space-y-1">
                         <div class="flex items-center gap-2">
@@ -645,63 +660,66 @@
                         <p class="text-gray-600 dark:text-gray-300">"${r.comment}"</p>
                     </div>
                     <div class="flex items-center gap-2 self-end sm:self-center">
-                        ${!r.approved ? `<button onclick="approveReview(${r.id})" class="px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg">قبول ونشر ✅</button>` : ''}
-                        <button onclick="deleteReview(${r.id})" class="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg">حذف 🗑️</button>
+                        ${!r.approved ? `<button onclick="approveReview('${r.id}')" class="px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition">قبول ونشر ✅</button>` : ''}
+                        <button onclick="deleteReview('${r.id}')" class="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg transition">حذف 🗑️</button>
                     </div>
                 </div>
             `).join('');
-        }
+        };
 
-        function approveReview(id) {
-            const rev = reviewsData.find(r => r.id === id);
-            if (rev) {
-                rev.approved = true;
-                saveReviews();
-                renderAdminReviews();
+        window.approveReview = async function(id) {
+            try {
+                await updateDoc(doc(db, "reviews", id), { approved: true });
+            } catch (error) {
+                console.error("خطأ في الموافقة:", error);
             }
-        }
+        };
 
-        function deleteReview(id) {
-            if (confirm('هل أنت متأكد من حذف هذا التقييم؟')) {
-                reviewsData = reviewsData.filter(r => r.id !== id);
-                saveReviews();
-                renderAdminReviews();
+        window.deleteReview = async function(id) {
+            if (confirm('هل أنت متأكد من حذف هذا التقييم نهائياً؟')) {
+                try {
+                    await deleteDoc(doc(db, "reviews", id));
+                } catch (error) {
+                    console.error("خطأ في الحذف:", error);
+                }
             }
-        }
+        };
 
         let cart = {};
-        let activeCategory = "الكل";
 
-        function toggleMobileMenu() {
+        window.toggleMobileMenu = function() {
             document.getElementById('mobileNav').classList.toggle('hidden');
-        }
+        };
 
         const themeToggleBtn = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
-            themeIcon.textContent = '☀️';
+            if(themeIcon) themeIcon.textContent = '☀️';
         } else {
             document.documentElement.classList.remove('dark');
-            themeIcon.textContent = '🌙';
+            if(themeIcon) themeIcon.textContent = '🌙';
         }
 
-        themeToggleBtn.addEventListener('click', () => {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.theme = 'light';
-                themeIcon.textContent = '🌙';
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.theme = 'dark';
-                themeIcon.textContent = '☀️';
-            }
-        });
+        if(themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.theme = 'light';
+                    themeIcon.textContent = '🌙';
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.theme = 'dark';
+                    themeIcon.textContent = '☀️';
+                }
+            });
+        }
 
-        function renderMenu() {
+        window.renderMenu = function() {
             const categoriesAr = ["الكل", ...new Set(MENU_ITEMS.map(i => i.category.ar))];
             const filterContainer = document.getElementById('categoryFilter');
+            if (!filterContainer) return;
             
             filterContainer.innerHTML = categoriesAr.map(c => {
                 const displayCat = currentLang === 'ar' ? c : (c === "الكل" ? TRANSLATIONS.en.allCategory : MENU_ITEMS.find(i => i.category.ar === c)?.category.en || c);
@@ -713,6 +731,7 @@
             }).join('');
 
             const grid = document.getElementById('menuGrid');
+            if (!grid) return;
             const itemsToDisplay = activeCategory === "الكل" ? MENU_ITEMS : MENU_ITEMS.filter(i => i.category.ar === activeCategory);
             
             grid.innerHTML = itemsToDisplay.map(item => `
@@ -732,14 +751,14 @@
                     </div>
                 </div>
             `).join('');
-        }
+        };
 
-        function setCategory(cat) {
+        window.setCategory = function(cat) {
             activeCategory = cat;
             renderMenu();
-        }
+        };
 
-        function addToCart(id) {
+        window.addToCart = function(id) {
             if (cart[id]) {
                 cart[id].qty += 1;
             } else {
@@ -747,25 +766,31 @@
                 cart[id] = { ...item, qty: 1 };
             }
             updateCartUI();
-        }
+        };
 
-        function changeQty(id, delta) {
+        window.changeQty = function(id, delta) {
             if (cart[id]) {
                 cart[id].qty += delta;
                 if (cart[id].qty <= 0) delete cart[id];
             }
             updateCartUI();
-        }
+        };
 
-        function updateCartUI() {
+        window.updateCartUI = function() {
             const count = Object.values(cart).reduce((sum, item) => sum + item.qty, 0);
             const total = Object.values(cart).reduce((sum, item) => sum + (item.price * item.qty), 0);
 
-            document.getElementById('cartBadge').textContent = count;
-            document.getElementById('floatingCartBadge').textContent = count;
-            document.getElementById('cartTotal').textContent = `${total} ${TRANSLATIONS[currentLang].currency}`;
+            const badge = document.getElementById('cartBadge');
+            const floatingBadge = document.getElementById('floatingCartBadge');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            if (badge) badge.textContent = count;
+            if (floatingBadge) floatingBadge.textContent = count;
+            if (cartTotal) cartTotal.textContent = `${total} ${TRANSLATIONS[currentLang].currency}`;
 
             const cartContainer = document.getElementById('cartItems');
+            if (!cartContainer) return;
+
             if (Object.keys(cart).length === 0) {
                 cartContainer.innerHTML = `<div class="text-center text-gray-400 py-8 text-xs">${TRANSLATIONS[currentLang].emptyCartMsg}</div>`;
             } else {
@@ -783,12 +808,13 @@
                     </div>
                 `).join('');
             }
-        }
+        };
 
-        function toggleCart() {
+        window.toggleCart = function() {
             const drawer = document.getElementById('cartDrawer');
             const overlay = document.getElementById('cartOverlay');
             const content = document.getElementById('cartContent');
+            if(!drawer) return;
 
             if (drawer.classList.contains('invisible')) {
                 drawer.classList.remove('invisible');
@@ -803,9 +829,9 @@
                     drawer.classList.add('invisible');
                 }, 300);
             }
-        }
+        };
 
-        /* ==================== منطق الخريطة والتحديد المحدث ==================== */
+        /* ==================== منطق الخريطة والتحديد ==================== */
         let pickedLat = null, pickedLng = null;
         let leafletMap = null, leafletMarker = null;
         const locStatus = document.getElementById('locStatus');
@@ -830,7 +856,7 @@
         }
 
         function initMapIfNeeded() {
-            if (leafletMap) return;
+            if (leafletMap || !mapPickerEl) return;
 
             leafletMap = L.map(mapPickerEl).setView([25.2048, 55.2708], 11);
 
@@ -848,48 +874,52 @@
             }
         }
 
-        document.getElementById('toggleMapBtn').addEventListener('click', () => {
-            const isOpening = mapPickerEl.classList.toggle('hidden');
-            
-            if (!mapPickerEl.classList.contains('hidden')) {
+        const toggleMapBtn = document.getElementById('toggleMapBtn');
+        if (toggleMapBtn) {
+            toggleMapBtn.addEventListener('click', () => {
+                mapPickerEl.classList.toggle('hidden');
+                if (!mapPickerEl.classList.contains('hidden')) {
+                    setTimeout(() => {
+                        initMapIfNeeded();
+                        if (leafletMap) leafletMap.invalidateSize();
+                    }, 100);
+                }
+            });
+        }
+
+        const useGpsBtn = document.getElementById('useGpsBtn');
+        if (useGpsBtn) {
+            useGpsBtn.addEventListener('click', () => {
+                if (!navigator.geolocation) {
+                    alert(currentLang === 'ar' ? 'المتصفح لا يدعم تحديد الموقع الحالي.' : 'Browser geolocation is not supported.');
+                    return;
+                }
+
+                const originalText = useGpsBtn.innerHTML;
+                useGpsBtn.innerText = currentLang === 'ar' ? "⏳ جاري جلب الموقع..." : "⏳ Fetching location...";
+
+                mapPickerEl.classList.remove('hidden');
                 setTimeout(() => {
                     initMapIfNeeded();
                     if (leafletMap) leafletMap.invalidateSize();
                 }, 100);
-            }
-        });
 
-        document.getElementById('useGpsBtn').addEventListener('click', () => {
-            if (!navigator.geolocation) {
-                alert(currentLang === 'ar' ? 'المتصفح لا يدعم تحديد الموقع الحالي.' : 'Browser geolocation is not supported.');
-                return;
-            }
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => {
+                        useGpsBtn.innerHTML = originalText;
+                        const { latitude, longitude } = pos.coords;
+                        setPickedLocation(latitude, longitude);
+                    },
+                    (err) => {
+                        useGpsBtn.innerHTML = originalText;
+                        alert(currentLang === 'ar' ? 'تعذّر الوصول لموقعك الحالي.' : 'Unable to access your current location.');
+                    },
+                    { enableHighAccuracy: true, timeout: 10000 }
+                );
+            });
+        }
 
-            const gpsBtn = document.getElementById('useGpsBtn');
-            const originalText = gpsBtn.innerHTML;
-            gpsBtn.innerText = currentLang === 'ar' ? "⏳ جاري جلب الموقع..." : "⏳ Fetching location...";
-
-            mapPickerEl.classList.remove('hidden');
-            setTimeout(() => {
-                initMapIfNeeded();
-                if (leafletMap) leafletMap.invalidateSize();
-            }, 100);
-
-            navigator.geolocation.getCurrentPosition(
-                (pos) => {
-                    gpsBtn.innerHTML = originalText;
-                    const { latitude, longitude } = pos.coords;
-                    setPickedLocation(latitude, longitude);
-                },
-                (err) => {
-                    gpsBtn.innerHTML = originalText;
-                    alert(currentLang === 'ar' ? 'تعذّر الوصول لموقعك الحالي.' : 'Unable to access your current location.');
-                },
-                { enableHighAccuracy: true, timeout: 10000 }
-            );
-        });
-
-        function sendOrderToWhatsApp(e) {
+        window.sendOrderToWhatsApp = function(e) {
             e.preventDefault();
             const keys = Object.keys(cart);
             if (keys.length === 0) {
@@ -923,11 +953,10 @@
             }
 
             window.open(`https://wa.me/963930786656?text=${msg}`, '_blank');
-        }
+        };
 
         // إقلاع الصفحة وتطبيق اللغة المخزنة
         applyLanguage();
-        renderPublicReviews();
     </script>
 </body>
 </html>
