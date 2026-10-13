@@ -86,7 +86,7 @@
     <header class="sticky top-0 z-40 w-full glass-card border-b border-gray-200/50 dark:border-gray-800/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center gap-3">
-                <img src="logo.png" alt="أم موفق" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-brand-light dark:border-brand-dark glow-effect object-cover" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=150'">
+                <img src="logo.png" alt="أم موفق" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-brand-light dark:border-brand-dark glow-effect object-cover cursor-pointer" onclick="openLightbox('logo.png', 'أم موفق للأكلات الشامية 🌹')" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=150'">
                 <div>
                     <h1 data-i18n="brandName" class="font-bold text-base sm:text-lg leading-tight text-brand-light dark:text-brand-dark">أم موفق</h1>
                     <span data-i18n="brandSub" class="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">للأكلات الشامية 🌹</span>
@@ -162,7 +162,7 @@
 
             <div class="relative flex-1 flex justify-center">
                 <div class="relative w-64 h-64 sm:w-80 sm:h-80">
-                    <img src="logo.png" alt="أم موفق" class="w-full h-full object-cover rounded-full border-4 border-brand-light shadow-2xl animate-float relative z-10" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=500'">
+                    <img src="logo.png" alt="أم موفق" class="w-full h-full object-cover rounded-full border-4 border-brand-light shadow-2xl animate-float relative z-10 cursor-pointer" onclick="openLightbox('logo.png', 'أم موفق للأكلات الشامية 🌹')" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=500'">
                 </div>
             </div>
         </div>
@@ -190,7 +190,7 @@
     <!-- About Section -->
     <section id="about" class="py-16 bg-gray-100/50 dark:bg-gray-900/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
-            <img src="logo.png" alt="عن أم موفق" class="w-64 h-64 rounded-3xl object-cover border-4 border-brand-light shadow-xl" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=500'">
+            <img src="logo.png" alt="عن أم موفق" class="w-64 h-64 rounded-3xl object-cover border-4 border-brand-light shadow-xl cursor-pointer" onclick="openLightbox('logo.png', 'قصة مطبخ أم موفق')" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=500'">
             <div class="space-y-4 text-center md:text-right">
                 <h2 data-i18n="aboutTitle" class="text-3xl font-bold">👩‍🍳 قصة مطبخ أم موفق</h2>
                 <p data-i18n="aboutDesc" class="text-gray-600 dark:text-gray-300 leading-relaxed font-tajawal">
@@ -269,7 +269,7 @@
     <!-- Footer & Admin Button -->
     <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
-            <img src="logo.png" alt="أم موفق" class="w-16 h-16 rounded-full mx-auto border-2 border-brand-light object-cover" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=150'">
+            <img src="logo.png" alt="أم موفق" class="w-16 h-16 rounded-full mx-auto border-2 border-brand-light object-cover cursor-pointer" onclick="openLightbox('logo.png', 'أم موفق للأكلات الشامية 🌹')" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=150'">
             <h3 data-i18n="brandName" class="text-lg font-bold text-white">أم موفق للأكلات الشامية 🌹</h3>
             <p data-i18n="footerRights" class="text-xs text-gray-500">تم بواسطة جواد | جميع الحقوق محفوظة © 2026 أم موفق</p>
             <div>
@@ -279,6 +279,17 @@
             </div>
         </div>
     </footer>
+
+    <!-- Lightbox Modal (نافذة عرض الصور المكبرة) -->
+    <div id="lightboxModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/85 backdrop-blur-md p-4 transition-opacity duration-300">
+        <button onclick="closeLightbox()" class="absolute top-6 left-6 sm:left-10 text-white text-2xl font-bold bg-white/10 hover:bg-white/20 w-12 h-12 rounded-full flex items-center justify-center transition z-10 cursor-pointer">✕</button>
+        <div class="relative max-w-4xl max-h-[90vh] flex flex-col items-center text-center">
+            <img id="lightboxImg" src="" alt="" class="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl border border-white/20">
+            <p id="lightboxCaption" class="text-white text-lg font-bold mt-4 bg-black/60 px-6 py-2 rounded-2xl shadow-lg"></p>
+        </div>
+        <!-- طبقة للنقر خارج الصورة لإغلاق النافذة -->
+        <div class="absolute inset-0 -z-10" onclick="closeLightbox()"></div>
+    </div>
 
     <!-- Admin Panel Modal -->
     <div id="adminModal" class="fixed inset-0 z-50 invisible flex items-center justify-center p-4">
@@ -299,7 +310,7 @@
             
             <div class="p-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                    <img src="logo.png" class="w-8 h-8 rounded-full" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=100'">
+                    <img src="logo.png" class="w-8 h-8 rounded-full cursor-pointer" onclick="openLightbox('logo.png', 'أم موفق')" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=100'">
                     <h3 data-i18n="cartTitle" class="font-bold text-lg">إرسال الطلب 🛒</h3>
                 </div>
                 <button onclick="toggleCart()" class="text-2xl font-bold hover:text-red-500">✕</button>
@@ -386,6 +397,37 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+
+        /* ==================== وظائف الـ Lightbox للصور ==================== */
+        window.openLightbox = function(imgSrc, captionText) {
+            const modal = document.getElementById('lightboxModal');
+            const img = document.getElementById('lightboxImg');
+            const caption = document.getElementById('lightboxCaption');
+            
+            if (!modal || !img || !caption) return;
+            
+            img.src = imgSrc;
+            caption.textContent = captionText;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
+        }
+
+        window.closeLightbox = function() {
+            const modal = document.getElementById('lightboxModal');
+            if (!modal) return;
+            
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            document.body.style.overflow = ''; // استعادة التمرير
+        }
+
+        // إغلاق النافذة عند الضغط على زر Esc من لوحة المفاتيح
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
 
         /* ==================== نظام الترجمة لغة عربية / إنجليزية ==================== */
         const TRANSLATIONS = {
@@ -741,7 +783,7 @@
             
             grid.innerHTML = itemsToDisplay.map(item => `
                 <div class="glass-card rounded-2xl overflow-hidden flex flex-col hover:border-brand-light/50 transition">
-                    <img src="${item.image}" alt="${item.name[currentLang]}" class="h-44 w-full object-cover">
+                    <img src="${item.image}" alt="${item.name[currentLang]}" class="h-44 w-full object-cover cursor-pointer hover:scale-105 transition duration-300" onclick="openLightbox('${item.image}', '${item.name[currentLang]}')">
                     <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
                         <div>
                             <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-light/10 text-brand-light dark:text-brand-dark">${item.category[currentLang]}</span>
