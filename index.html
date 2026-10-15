@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="scroll-smooth" translate="no">
+<html lang="ar" dir="rtl" class="scroll-smooth notranslate" translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- منع متصفح Google Chrome من الترجمة التلقائية لمنع التعارض -->
+    <!-- منع المتصفحات من الترجمة التلقائية لتجنب التعارض -->
     <meta name="google" content="notranslate">
-     <meta property="og:description" content="يرجى تأكيد الطلب قبل يومين على الأقل"/>
+    <meta property="og:description" content="يرجى تأكيد الطلب قبل يومين على الأقل"/>
     <meta property="og:image" content="https://jawad11-damas.github.io/Chef_Um_mowafak/logo.png" />
     <meta property="og:image:width" content="600" />
     <meta property="og:image:height" content="600" />
 
-    <title>أم موفق للأكلات الشامية 🌹</title>
+    <title>مطبخ ياسمين الشام - أم موفق 🌹</title>
     <link rel="icon" type="image/png" href="logo.png">
     
     <!-- Google Fonts -->
@@ -80,24 +80,24 @@
         .star-rating input:checked ~ label { color: #f59e0b; }
     </style>
 </head>
-<body class="font-cairo bg-gray-50 text-slate-900 dark:bg-brand-bgDark dark:text-slate-100 transition-colors duration-300 pb-20 notranslate">
+<body class="font-cairo bg-gray-50 text-slate-900 dark:bg-brand-bgDark dark:text-slate-100 transition-colors duration-300 pb-20 notranslate" translate="no">
 
     <!-- Header / Nav -->
     <header class="sticky top-0 z-40 w-full glass-card border-b border-gray-200/50 dark:border-gray-800/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center gap-3">
-                <img src="logo.png" alt="أم موفق" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-brand-light dark:border-brand-dark glow-effect object-cover cursor-pointer" onclick="openLightbox('logo.png', 'أم موفق للأكلات الشامية 🌹')" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=150'">
+                <img src="logo.png" alt="أم موفق" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-brand-light dark:border-brand-dark glow-effect object-cover cursor-pointer" onclick="openLightbox('logo.png', 'مطبخ ياسمين الشام 🌹')" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=150'">
                 <div>
-                    <h1 data-i18n="brandName" class="font-bold text-base sm:text-lg leading-tight text-brand-light dark:text-brand-dark">أم موفق</h1>
-                    <span data-i18n="brandSub" class="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">للأكلات الشامية 🌹</span>
+                    <h1 data-i18n="brandName" class="font-bold text-base sm:text-lg leading-tight text-brand-light dark:text-brand-dark">ياسمين الشام</h1>
+                    <span data-i18n="brandSub" class="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">أم موفق للأكلات الشامية 🌹</span>
                 </div>
             </a>
 
-            <!-- روابط الكومبيوتر -->
+            <!-- روابط التنقل -->
             <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold">
                 <a href="#hero" data-i18n="navHome" class="hover:text-brand-light transition">🏠 الرئيسية</a>
                 <a href="#menu" data-i18n="navMenu" class="hover:text-brand-light transition">📖 القائمة</a>
-                <a href="#about" data-i18n="navAbout" class="hover:text-brand-light transition">👩‍🍳 عن أم موفق</a>
+                <a href="#about" data-i18n="navAbout" class="hover:text-brand-light transition">👩‍🍳 عن الشيف</a>
                 <a href="#why-us" data-i18n="navWhyUs" class="hover:text-brand-light transition">🌟 لماذا نحن؟</a>
                 <a href="#reviews" data-i18n="navReviews" class="hover:text-brand-light transition">💬 الآراء والتقييمات</a>
             </nav>
@@ -127,7 +127,7 @@
         <div id="mobileNav" class="hidden lg:hidden border-t border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md px-4 py-3 space-y-2 text-sm font-semibold">
             <a href="#hero" onclick="toggleMobileMenu()" data-i18n="navHome" class="block py-2 hover:text-brand-light">🏠 الرئيسية</a>
             <a href="#menu" onclick="toggleMobileMenu()" data-i18n="navMenu" class="block py-2 hover:text-brand-light">📖 القائمة</a>
-            <a href="#about" onclick="toggleMobileMenu()" data-i18n="navAbout" class="block py-2 hover:text-brand-light">👩‍🍳 عن أم موفق</a>
+            <a href="#about" onclick="toggleMobileMenu()" data-i18n="navAbout" class="block py-2 hover:text-brand-light">👩‍🍳 عن الشيف</a>
             <a href="#why-us" onclick="toggleMobileMenu()" data-i18n="navWhyUs" class="block py-2 hover:text-brand-light">🌟 لماذا نحن؟</a>
             <a href="#reviews" onclick="toggleMobileMenu()" data-i18n="navReviews" class="block py-2 hover:text-brand-light">💬 الآراء والتقييمات</a>
         </div>
@@ -140,29 +140,29 @@
                 
                 <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-2">
                     <div data-i18n="heroBadge" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-light/10 text-brand-light dark:text-brand-dark text-xs sm:text-sm font-semibold">
-                        ✨ النكهة الدمشقية الأصيلة في الإمارات
-                    </div>
-                    <div data-i18n="heroNotice" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs sm:text-sm font-bold animate-pulse">
-                        ⏰ يرجى تثبيت الطلب قبل يومين من موعد التسليم
+                        🌼 من مطبخ ياسمين الشام 🌼
                     </div>
                 </div>
 
-                <h1 data-i18n="heroTitle" class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
-                    🍽️ أم موفق للأكلات الشامية 🌹
+                <h1 data-i18n="heroTitle" class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight text-brand-light dark:text-brand-dark">
+                    💕 اللقمة الهنية والنفس الطيب والشغل النظيف 💕
                 </h1>
-                <p data-i18n="heroDesc" class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl font-tajawal">
-                    من قلب دمشق إلى الإمارات... نقدم لكم أشهى المأكولات والمحاشي والكبب الشامية المصنوعة بكل حب ونظافة بيد أم موفق.
+                
+                <p data-i18n="heroDesc" class="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl font-tajawal leading-relaxed">
+                    🔊 دائماً جاهزون لاستقبال طلباتكم من موائد ومناسف لمناسباتكم بجودة عالية 🌼<br>
+                    من تحت ديات الشيف <strong class="text-brand-light">أم موفق للأكلات الشامية 💗</strong>
                 </p>
-                <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+
+                <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
                     <a href="#menu" data-i18n="heroBtn" class="px-8 py-4 rounded-2xl bg-brand-light dark:bg-brand-dark text-white font-bold hover:opacity-90 transition flex items-center gap-2 shadow-lg">
-                        📖 تصفح القائمة واطلب
+                        📖 تصفح قائمة الأطباق
                     </a>
                 </div>
             </div>
 
             <div class="relative flex-1 flex justify-center">
                 <div class="relative w-64 h-64 sm:w-80 sm:h-80">
-                    <img src="logo.png" alt="أم موفق" class="w-full h-full object-cover rounded-full border-4 border-brand-light shadow-2xl animate-float relative z-10 cursor-pointer" onclick="openLightbox('logo.png', 'أم موفق للأكلات الشامية 🌹')" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=500'">
+                    <img src="logo.png" alt="أم موفق" class="w-full h-full object-cover rounded-full border-4 border-brand-light shadow-2xl animate-float relative z-10 cursor-pointer" onclick="openLightbox('logo.png', 'مطبخ ياسمين الشام 🌹')" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=500'">
                 </div>
             </div>
         </div>
@@ -171,8 +171,8 @@
     <!-- Menu Section -->
     <section id="menu" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center space-y-4 mb-8">
-            <h2 data-i18n="menuTitle" class="text-3xl font-bold">📖 قائمة الأطباق</h2>
-            <p data-i18n="menuSub" class="text-gray-500 dark:text-gray-400">اختر أطباقك ثم اضغط على "أرسل طلبك"</p>
+            <h2 data-i18n="menuTitle" class="text-3xl font-bold">📖 قائمة الأطباق والأسعار</h2>
+            <p data-i18n="menuSub" class="text-gray-500 dark:text-gray-400">التجربة خير برهان.. اختر أطباقك واطلبها مباشرة عبر الواتساب</p>
             <div id="categoryFilter" class="flex flex-wrap gap-2 justify-center pt-2"></div>
         </div>
         <div id="menuGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
@@ -190,39 +190,42 @@
     <!-- About Section -->
     <section id="about" class="py-16 bg-gray-100/50 dark:bg-gray-900/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
-            <img src="logo.png" alt="عن أم موفق" class="w-64 h-64 rounded-3xl object-cover border-4 border-brand-light shadow-xl cursor-pointer" onclick="openLightbox('logo.png', 'قصة مطبخ أم موفق')" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=500'">
+            <img src="logo.png" alt="عن أم موفق" class="w-64 h-64 rounded-3xl object-cover border-4 border-brand-light shadow-xl cursor-pointer" onclick="openLightbox('logo.png', 'مطبخ ياسمين الشام')" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=500'">
             <div class="space-y-4 text-center md:text-right">
-                <h2 data-i18n="aboutTitle" class="text-3xl font-bold">👩‍🍳 قصة مطبخ أم موفق</h2>
+                <h2 data-i18n="aboutTitle" class="text-3xl font-bold">👩‍🍳 أم موفق للأكلات الشامية</h2>
                 <p data-i18n="aboutDesc" class="text-gray-600 dark:text-gray-300 leading-relaxed font-tajawal">
-                    بدأت الحكاية من حارات دمشق القديمة، حيث الأسرار الشامية ونكهات الياسمين. تنقل أم موفق خبرتها الطويلة في إعداد أعرق المأكولات الشامية إلى سفرتكم في الإمارات، بلمسة بيتية دافئة ومكونات طازجة يُنتقى كل منها بعناية فائقة.
+                    نقدم أشهى وأصناف الأكل السوري والكبب والمناسف والمحاشي والمعجنات بحرفية عالية ونفس طيب يذكركم بأصالة دمشق الشام. الأسعار حسب الكمية، وتتوفر خدمات التوصيل لكل من (الشارقة، عجمان، ودبي).
                 </p>
+                <div class="pt-2 text-sm font-bold text-brand-light">
+                    📞 للتواصل المباشر: 0552210433
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Why Us -->
     <section id="why-us" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 data-i18n="whyTitle" class="text-3xl font-bold text-center mb-12">🌟 لماذا تختار أم موفق؟</h2>
+        <h2 data-i18n="whyTitle" class="text-3xl font-bold text-center mb-12">🌟 لماذا تختار مطبخنا؟</h2>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div class="glass-card p-6 rounded-2xl text-center space-y-3">
-                <div class="text-4xl">🥩</div>
-                <h3 data-i18n="why1Title" class="font-bold text-lg">لحوم طازجة 100%</h3>
-                <p data-i18n="why1Desc" class="text-sm text-gray-500">نستخدم أجود أنواع اللحوم والخضار اليومية</p>
+                <div class="text-4xl">🥘</div>
+                <h3 data-i18n="why1Title" class="font-bold text-lg">النفس الطيب</h3>
+                <p data-i18n="why1Desc" class="text-sm text-gray-500">نكهات شامية أصلية ومميزة</p>
             </div>
             <div class="glass-card p-6 rounded-2xl text-center space-y-3">
                 <div class="text-4xl">🧼</div>
-                <h3 data-i18n="why2Title" class="font-bold text-lg">نظافة بيتية</h3>
-                <p data-i18n="why2Desc" class="text-sm text-gray-500">أعلى معايير الهيجين والعناية بالتحضير</p>
+                <h3 data-i18n="why2Title" class="font-bold text-lg">الشغل النظيف</h3>
+                <p data-i18n="why2Desc" class="text-sm text-gray-500">عناية فائقة بالنظافة والجودة</p>
             </div>
             <div class="glass-card p-6 rounded-2xl text-center space-y-3">
-                <div class="text-4xl">⚡</div>
-                <h3 data-i18n="why3Title" class="font-bold text-lg">توصيل سريع</h3>
-                <p data-i18n="why3Desc" class="text-sm text-gray-500">يصلك الطعام ساخناً وفي الوقت المحدد</p>
+                <div class="text-4xl">🏷️</div>
+                <h3 data-i18n="why3Title" class="font-bold text-lg">أسعار حلوة</h3>
+                <p data-i18n="why3Desc" class="text-sm text-gray-500">أسعار تنافسية تناسب الجميع</p>
             </div>
             <div class="glass-card p-6 rounded-2xl text-center space-y-3">
-                <div class="text-4xl">❤️</div>
-                <h3 data-i18n="why4Title" class="font-bold text-lg">نكهة شامية أصيلة</h3>
-                <p data-i18n="why4Desc" class="text-sm text-gray-500">وصفات موروثة أباً عن جد</p>
+                <div class="text-4xl">🚚</div>
+                <h3 data-i18n="why4Title" class="font-bold text-lg">توصيل منظم</h3>
+                <p data-i18n="why4Desc" class="text-sm text-gray-500">توصيل لـ دبي، الشارقة وعجمان</p>
             </div>
         </div>
     </section>
@@ -231,10 +234,10 @@
     <section id="reviews" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div class="text-center space-y-2">
             <h2 data-i18n="reviewsTitle" class="text-3xl font-bold">💬 آراء وتقييمات زبائننا</h2>
-            <p data-i18n="reviewsSub" class="text-gray-500 dark:text-gray-400">شاركنا رأيك وتجربتك مع مأكولات أم موفق 🌹</p>
+            <p data-i18n="reviewsSub" class="text-gray-500 dark:text-gray-400">التجربة خير برهان.. شاركنا رأيك وتجربتك 🌹</p>
         </div>
 
-        <!-- قائمة التقييمات المعروضة (من Firebase) -->
+        <!-- قائمة التقييمات المعروضة -->
         <div id="reviewsList" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
 
         <!-- نموذج إضافة تقييم جديد -->
@@ -243,7 +246,7 @@
             <form id="reviewForm" onsubmit="addReview(event)" class="space-y-4 text-sm">
                 <div>
                     <label data-i18n="reviewerNameLabel" class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">الاسم الكريم</label>
-                    <input type="text" id="reviewerName" required data-i18n-placeholder="phReviewerName" placeholder="مثال: أحمد الدمشقي" class="w-full p-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
+                    <input type="text" id="reviewerName" required data-i18n-placeholder="phName" placeholder="مثال: أحمد الدمشقي" class="w-full p-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
                 </div>
                 <div>
                     <label data-i18n="ratingStarLabel" class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">التقييم بالنجمات</label>
@@ -266,12 +269,12 @@
         </div>
     </section>
 
-    <!-- Footer & Admin Button -->
+    <!-- Footer -->
     <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
-            <img src="logo.png" alt="أم موفق" class="w-16 h-16 rounded-full mx-auto border-2 border-brand-light object-cover cursor-pointer" onclick="openLightbox('logo.png', 'أم موفق للأكلات الشامية 🌹')" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=150'">
+            <img src="logo.png" alt="أم موفق" class="w-16 h-16 rounded-full mx-auto border-2 border-brand-light object-cover cursor-pointer" onclick="openLightbox('logo.png', 'أم موفق')" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=150'">
             <h3 data-i18n="brandName" class="text-lg font-bold text-white">أم موفق للأكلات الشامية 🌹</h3>
-            <p data-i18n="footerRights" class="text-xs text-gray-500">تم بواسطة جواد | جميع الحقوق محفوظة © 2026 أم موفق</p>
+            <p data-i18n="footerRights" class="text-xs text-gray-500">جميع الحقوق محفوظة © 2026 مطبخ ياسمين الشام</p>
             <div>
                 <button onclick="openAdminPanel()" data-i18n="adminPanelBtn" class="text-xs text-gray-600 hover:text-brand-light underline transition">
                     🔒 لوحة إدارة التقييمات
@@ -280,14 +283,13 @@
         </div>
     </footer>
 
-    <!-- Lightbox Modal (نافذة عرض الصور المكبرة) -->
+    <!-- Lightbox Modal -->
     <div id="lightboxModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/85 backdrop-blur-md p-4 transition-opacity duration-300">
         <button onclick="closeLightbox()" class="absolute top-6 left-6 sm:left-10 text-white text-2xl font-bold bg-white/10 hover:bg-white/20 w-12 h-12 rounded-full flex items-center justify-center transition z-10 cursor-pointer">✕</button>
         <div class="relative max-w-4xl max-h-[90vh] flex flex-col items-center text-center">
             <img id="lightboxImg" src="" alt="" class="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl border border-white/20">
             <p id="lightboxCaption" class="text-white text-lg font-bold mt-4 bg-black/60 px-6 py-2 rounded-2xl shadow-lg"></p>
         </div>
-        <!-- طبقة للنقر خارج الصورة لإغلاق النافذة -->
         <div class="absolute inset-0 -z-10" onclick="closeLightbox()"></div>
     </div>
 
@@ -316,16 +318,26 @@
                 <button onclick="toggleCart()" class="text-2xl font-bold hover:text-red-500">✕</button>
             </div>
 
-            <div data-i18n="cartNotice" class="bg-amber-500/10 border-b border-amber-500/20 p-2.5 text-center text-xs text-amber-600 dark:text-amber-400 font-bold">
-                ⏰ تنبيه: يرجى تقديم الطلب قبل يومين من موعد التسليم
+            <div data-i18n="deliveryNotice" class="bg-amber-500/10 border-b border-amber-500/20 p-2.5 text-center text-xs text-amber-600 dark:text-amber-400 font-bold">
+                🚙 التوصيل: (الشارقة وعجمان: 20 د.إ) | (دبي: 25 د.إ)
             </div>
 
             <div id="cartItems" class="p-4 space-y-3 max-h-48 overflow-y-auto border-b border-gray-200 dark:border-gray-800"></div>
 
             <div class="p-4 flex-1 overflow-y-auto space-y-4 bg-gray-50 dark:bg-gray-900/50">
-                <div class="flex justify-between items-center text-lg font-bold pb-2 border-b border-gray-200 dark:border-gray-700">
-                    <span data-i18n="cartTotalLabel">إجمالي الطلب:</span>
-                    <span id="cartTotal" class="text-brand-light dark:text-brand-dark">0 د.إ</span>
+                <div class="space-y-1 pb-2 border-b border-gray-200 dark:border-gray-700 text-sm">
+                    <div class="flex justify-between">
+                        <span data-i18n="subtotalLabel">مجموع الأطباق:</span>
+                        <span id="cartSubtotal" class="font-bold">0 د.إ</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span data-i18n="deliveryLabel">رسوم التوصيل:</span>
+                        <span id="cartDelivery" class="font-bold">20 د.إ</span>
+                    </div>
+                    <div class="flex justify-between items-center text-lg font-bold pt-1">
+                        <span data-i18n="cartTotalLabel">الإجمالي النهائي:</span>
+                        <span id="cartTotal" class="text-brand-light dark:text-brand-dark">0 د.إ</span>
+                    </div>
                 </div>
 
                 <form id="orderForm" onsubmit="sendOrderToWhatsApp(event)" class="space-y-3 text-sm">
@@ -335,15 +347,15 @@
                     </div>
                     <div>
                         <label data-i18n="custPhoneLabel" class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">رقم الهاتف *</label>
-                        <input type="tel" id="custPhone" required placeholder="050xxxxxxx" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
+                        <input type="tel" id="custPhone" required placeholder="0552210433" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
                     </div>
 
                     <div>
                         <label data-i18n="custEmirateLabel" class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">الإمارة *</label>
-                        <select id="custEmirate" required class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
-                            <option value="🏙️ دبي" data-i18n="emDubai">🏙️ إمارة دبي</option>
-                            <option value="🏖️ الشارقة" data-i18n="emSharjah">🏖️ إمارة الشارقة</option>
-                            <option value="🌊 عجمان" data-i18n="emAjman">🌊 إمارة عجمان</option>
+                        <select id="custEmirate" onchange="updateCartUI()" required class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
+                            <option value="الشارقة" data-i18n="emSharjah">🏖️ إمارة الشارقة (توصيل 20 درهم)</option>
+                            <option value="عجمان" data-i18n="emAjman">🌊 إمارة عجمان (توصيل 20 درهم)</option>
+                            <option value="دبي" data-i18n="emDubai">🏙️ إمارة دبي (توصيل 25 درهم)</option>
                         </select>
                     </div>
 
@@ -354,7 +366,7 @@
 
                     <div>
                         <label data-i18n="orderNotesLabel" class="block text-xs font-semibold mb-1 text-gray-600 dark:text-gray-400">ملاحظات خاصة بالطلب (اختياري)</label>
-                        <textarea id="orderNotes" rows="2" data-i18n-placeholder="phNotes" placeholder="مثال: بدون ثوم، موعد التسليم المتوقع، درجة الفلفل..." class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"></textarea>
+                        <textarea id="orderNotes" rows="2" data-i18n-placeholder="phNotes" placeholder="مثال: موعد التسليم، درجة الفلفل، الكميات المطلوبة..." class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"></textarea>
                     </div>
 
                     <div class="pt-2">
@@ -364,7 +376,7 @@
                                 🎯 استخدام موقعي الحالي
                             </button>
                             <button type="button" id="toggleMapBtn" data-i18n="toggleMapBtn" class="p-2.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl font-bold text-xs flex items-center justify-center gap-1 hover:border-brand-light transition">
-                                📍 تحديد الموقع على الخريطة
+                                📍 تحديد على الخريطة
                             </button>
                         </div>
                         
@@ -410,7 +422,7 @@
             caption.textContent = captionText;
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
+            document.body.style.overflow = 'hidden';
         }
 
         window.closeLightbox = function() {
@@ -419,14 +431,11 @@
             
             modal.classList.remove('flex');
             modal.classList.add('hidden');
-            document.body.style.overflow = ''; // استعادة التمرير
+            document.body.style.overflow = '';
         }
 
-        // إغلاق النافذة عند الضغط على زر Esc من لوحة المفاتيح
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            }
+            if (e.key === 'Escape') closeLightbox();
         });
 
         /* ==================== نظام الترجمة لغة عربية / إنجليزية ==================== */
@@ -436,42 +445,43 @@
                 brandSub: "للأكلات الشامية 🌹",
                 navHome: "🏠 الرئيسية",
                 navMenu: "📖 القائمة",
-                navAbout: "👩‍🍳 عن أم موفق",
+                navAbout: "👩‍🍳 عن الشيف",
                 navWhyUs: "🌟 لماذا نحن؟",
                 navReviews: "💬 الآراء والتقييمات",
                 cart: "السلة",
-                heroBadge: "✨ النكهة الدمشقية الأصيلة في الإمارات",
-                heroNotice: "⏰ يرجى تثبيت الطلب قبل يومين من موعد التسليم",
-                heroTitle: "🍽️ أم موفق للأكلات الشامية 🌹",
-                heroDesc: "من قلب دمشق إلى الإمارات... نقدم لكم أشهى المأكولات والمحاشي والكبب الشامية المصنوعة بكل حب ونظافة بيد أم موفق.",
-                heroBtn: "📖 تصفح القائمة واطلب",
-                menuTitle: "📖 قائمة الأطباق",
-                menuSub: "اختر أطباقك ثم اضغط على 'أرسل طلبك'",
+                heroBadge: "🌼 من مطبخ ياسمين الشام 🌼",
+                heroTitle: "💕 اللقمة الهنية والنفس الطيب والشغل النظيف 💕",
+                heroDesc: "دائماً جاهزون لاستقبال طلباتكم من موائد ومناسف لمناسباتكم بجودة عالية 🌼 من تحت ديات الشيف أم موفق للأكلات الشامية 💗",
+                heroBtn: "📖 تصفح قائمة الأطباق",
+                menuTitle: "📖 قائمة الأطباق والأسعار",
+                menuSub: "التجربة خير برهان.. اختر أطباقك واطلبها مباشرة عبر الواتساب",
                 sendOrderBtn: "أرسل طلبك الآن",
-                aboutTitle: "👩‍🍳 قصة مطبخ أم موفق",
-                aboutDesc: "بدأت الحكاية من حارات دمشق القديمة، حيث الأسرار الشامية ونكهات الياسمين. تنقل أم موفق خبرتها الطويلة في إعداد أعرق المأكولات الشامية إلى سفرتكم في الإمارات، بلمسة بيتية دافئة ومكونات طازجة يُنتقى كل منها بعناية فائقة.",
-                whyTitle: "🌟 لماذا تختار أم موفق؟",
-                why1Title: "لحوم طازجة 100%",
-                why1Desc: "نستخدم أجود أنواع اللحوم والخضار اليومية",
-                why2Title: "نظافة بيتية",
-                why2Desc: "أعلى معايير الهيجين والعناية بالتحضير",
-                why3Title: "توصيل سريع",
-                why3Desc: "يصلك الطعام ساخناً وفي الوقت المحدد",
-                why4Title: "نكهة شامية أصيلة",
-                why4Desc: "وصفات موروثة أباً عن جد",
+                aboutTitle: "👩‍🍳 أم موفق للأكلات الشامية",
+                aboutDesc: "نقدم أشهى وأصناف الأكل السوري والكبب والمناسف والمحاشي والمعجنات بحرفية عالية ونفس طيب يذكركم بأصالة دمشق الشام. الأسعار حسب الكمية، وتتوفر خدمات التوصيل لكل من (الشارقة، عجمان، ودبي).",
+                whyTitle: "🌟 لماذا تختار مطبخنا؟",
+                why1Title: "النفس الطيب",
+                why1Desc: "نكهات شامية أصلية ومميزة",
+                why2Title: "الشغل النظيف",
+                why2Desc: "عناية فائقة بالنظافة والجودة",
+                why3Title: "أسعار حلوة",
+                why3Desc: "أسعار تنافسية تناسب الجميع",
+                why4Title: "توصيل منظم",
+                why4Desc: "توصيل لـ دبي، الشارقة وعجمان",
                 reviewsTitle: "💬 آراء وتقييمات زبائننا",
-                reviewsSub: "شاركنا رأيك وتجربتك مع مأكولات أم موفق 🌹",
+                reviewsSub: "التجربة خير برهان.. شاركنا رأيك وتجربتك 🌹",
                 addReviewTitle: "✍️ أضف تقييمك الخاص",
                 reviewerNameLabel: "الاسم الكريم",
                 ratingStarLabel: "التقييم بالنجمات",
                 commentLabel: "تعليقك أو رأيك بالطعام",
                 submitReviewBtn: "إرسال التقييم للمراجعة ✨",
-                footerRights: "جميع الحقوق محفوظة © 2026 أم موفق",
+                footerRights: "جميع الحقوق محفوظة © 2026 مطبخ ياسمين الشام",
                 adminPanelBtn: "🔒 لوحة إدارة التقييمات",
                 adminTitle: "⚙️ لوحة موافقة وحذف التقييمات",
                 cartTitle: "إرسال الطلب 🛒",
-                cartNotice: "⏰ تنبيه: يرجى تقديم الطلب قبل يومين من موعد التسليم",
-                cartTotalLabel: "إجمالي الطلب:",
+                deliveryNotice: "🚙 التوصيل: (الشارقة وعجمان: 20 د.إ) | (دبي: 25 د.إ)",
+                subtotalLabel: "مجموع الأطباق:",
+                deliveryLabel: "رسوم التوصيل:",
+                cartTotalLabel: "الإجمالي النهائي:",
                 custNameLabel: "الاسم الكامل *",
                 custPhoneLabel: "رقم الهاتف *",
                 custEmirateLabel: "الإمارة *",
@@ -479,7 +489,7 @@
                 orderNotesLabel: "ملاحظات خاصة بالطلب (اختياري)",
                 locationLabel: "تحديد الموقع الدقيق (اختياري)",
                 useGpsBtn: "🎯 استخدام موقعي الحالي",
-                toggleMapBtn: "📍 تحديد الموقع على الخريطة",
+                toggleMapBtn: "📍 تحديد على الخريطة",
                 locSuccess: "📍 تم تحديد الموقع بنجاح",
                 whatsappSubmitBtn: "إرسال الطلب عبر الواتساب",
                 currency: "د.إ",
@@ -488,12 +498,13 @@
                 allCategory: "الكل",
                 phName: "أدخل اسمك الكريم",
                 phAddress: "أدخل بيانات العنوان التوضيحية",
-                phNotes: "مثال: بدون ثوم، موعد التسليم المتوقع، درجة الفلفل...",
+                phNotes: "مثال: موعد التسليم، درجة الفلفل، الكميات المطلوبة...",
                 phReviewerName: "مثال: أحمد الدمشقي",
                 phComment: "اكتب انطباعك عن الجودة والنكهة...",
-                emDubai: "🏙️ إمارة دبي",
-                emSharjah: "🏖️ إمارة الشارقة",
-                emAjman: "🌊 إمارة عجمان"
+                emDubai: "🏙️ إمارة دبي (توصيل 25 درهم)",
+                emSharjah: "🏖️ إمارة الشارقة (توصيل 20 درهم)",
+                emAjman: "🌊 إمارة عجمان (توصيل 20 درهم)",
+                asOrdered: "حسب الطلب"
             },
             en: {
                 brandName: "Um Mowaffak",
@@ -504,60 +515,62 @@
                 navWhyUs: "🌟 Why Us?",
                 navReviews: "💬 Reviews",
                 cart: "Cart",
-                heroBadge: "✨ Authentic Damascene Flavor in UAE",
-                heroNotice: "⏰ Please confirm orders 7 days before delivery",
-                heroTitle: "🍽️ Um Mowaffak Syrian Food 🌹",
-                heroDesc: "From the heart of Damascus to the UAE... We offer the finest home-cooked Syrian dishes, mahshi, and kibbeh prepared with love and high hygiene.",
-                heroBtn: "📖 View Menu & Order",
-                menuTitle: "📖 Our Dishes Menu",
-                menuSub: "Select your dishes then click 'Send Order'",
-                sendOrderBtn: "Send Your Order Now",
-                aboutTitle: "👩‍🍳 Um Mowaffak's Kitchen Story",
-                aboutDesc: "The story began in the old alleys of Damascus with traditional recipes and jasmine flavors. Um Mowaffak brings decades of experience to your table in the UAE with warm homemade touch and fresh daily ingredients.",
-                whyTitle: "🌟 Why Choose Um Mowaffak?",
-                why1Title: "100% Fresh Meat",
-                why1Desc: "We use top quality meats and fresh vegetables daily",
-                why2Title: "Home Cleanliness",
-                why2Desc: "Highest standards of hygiene and careful prep",
-                why3Title: "Prompt Delivery",
-                why3Desc: "Food arrives hot and right on schedule",
-                why4Title: "Authentic Syrian Taste",
-                why4Desc: "Recipes passed down through generations",
+                heroBadge: "🌼 Jasmine of Damascus Kitchen 🌼",
+                heroTitle: "💕 Delicious Taste, Fine Touch & Clean Prep 💕",
+                heroDesc: "Always ready to welcome your orders for feasts and occasions with high quality 🌼 Handcrafted by Chef Um Mowaffak 💗",
+                heroBtn: "📖 Browse Menu",
+                menuTitle: "📖 Dishes Menu & Prices",
+                menuSub: "Taste is the best proof.. Choose your dishes and order via WhatsApp",
+                sendOrderBtn: "Send Order Now",
+                aboutTitle: "👩‍🍳 Um Mowaffak's Kitchen",
+                aboutDesc: "We offer the finest Syrian dishes, kibbeh, mansaf, mahshi, and pastries with traditional Damascus taste. Prices vary by quantity, with delivery available in Sharjah, Ajman, and Dubai.",
+                whyTitle: "🌟 Why Choose Our Kitchen?",
+                why1Title: "Fine Touch",
+                why1Desc: "Authentic and special Syrian flavors",
+                why2Title: "Clean Work",
+                why2Desc: "Highest standards of hygiene and care",
+                why3Title: "Great Prices",
+                why3Desc: "Competitive prices for everyone",
+                why4Title: "Organized Delivery",
+                why4Desc: "Delivery to Dubai, Sharjah & Ajman",
                 reviewsTitle: "💬 Customer Reviews",
-                reviewsSub: "Share your feedback & experience with Um Mowaffak 🌹",
+                reviewsSub: "Share your experience and feedback 🌹",
                 addReviewTitle: "✍️ Add Your Review",
                 reviewerNameLabel: "Your Name",
                 ratingStarLabel: "Star Rating",
-                commentLabel: "Your Review / Feedback",
+                commentLabel: "Your Feedback",
                 submitReviewBtn: "Submit Review for Moderation ✨",
-                footerRights: "All Rights Reserved © 2026 Um Mowaffak",
+                footerRights: "All Rights Reserved © 2026 Yasmin Alsham Kitchen",
                 adminPanelBtn: "🔒 Admin Review Panel",
                 adminTitle: "⚙️ Review Moderation Panel",
                 cartTitle: "Checkout Order 🛒",
-                cartNotice: "⏰ Notice: Please order 7 days in advance",
-                cartTotalLabel: "Total Amount:",
+                deliveryNotice: "🚙 Delivery: (Sharjah & Ajman: 20 AED) | (Dubai: 25 AED)",
+                subtotalLabel: "Subtotal:",
+                deliveryLabel: "Delivery Fee:",
+                cartTotalLabel: "Final Total:",
                 custNameLabel: "Full Name *",
                 custPhoneLabel: "Phone Number *",
                 custEmirateLabel: "Emirate *",
-                custAddressLabel: "Full Address (Street / Building / Flat)",
+                custAddressLabel: "Detailed Address (Street / Building / Flat)",
                 orderNotesLabel: "Special Notes (Optional)",
                 locationLabel: "Pin Exact Location (Optional)",
-                useGpsBtn: "🎯 Use My Current Location",
-                toggleMapBtn: "📍 Select Location on Map",
+                useGpsBtn: "🎯 Use Current Location",
+                toggleMapBtn: "📍 Select on Map",
                 locSuccess: "📍 Location set successfully",
                 whatsappSubmitBtn: "Send Order via WhatsApp",
                 currency: "AED",
                 addBtn: "Add ➕",
-                emptyCartMsg: "Your cart is currently empty.. Add delicious food! 😋",
+                emptyCartMsg: "Your cart is empty.. Add delicious food! 😋",
                 allCategory: "All",
                 phName: "Enter your full name",
-                phAddress: "Enter detailed address information",
-                phNotes: "Example: No garlic, expected delivery time, spice level...",
+                phAddress: "Enter detailed address",
+                phNotes: "Example: Delivery time, spice level...",
                 phReviewerName: "Example: Ahmad Al-Damashqi",
                 phComment: "Write your feedback on quality and taste...",
-                emDubai: "🏙️ Dubai Emirate",
-                emSharjah: "🏖️ Sharjah Emirate",
-                emAjman: "🌊 Ajman Emirate"
+                emDubai: "🏙️ Dubai Emirate (Delivery 25 AED)",
+                emSharjah: "🏖️ Sharjah Emirate (Delivery 20 AED)",
+                emAjman: "🌊 Ajman Emirate (Delivery 20 AED)",
+                asOrdered: "As Requested"
             }
         };
 
@@ -595,27 +608,74 @@
             updateCartUI();
         }
 
-        /* ==================== قائمة المنتجات الشاملة ==================== */
+        /* ==================== قائمة المنتجات الكاملة والمحدثة ==================== */
         const MENU_ITEMS = [
-            { id: 1, name: { ar: "كوسا محشي شامية", en: "Syrian Stuffed Zucchini (Kousa)" }, category: { ar: "محاشي", en: "Mahshi" }, price: 35, image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=500" },
-            { id: 2, name: { ar: "باذنجان محشي باللحم", en: "Stuffed Eggplant with Meat" }, category: { ar: "محاشي", en: "Mahshi" }, price: 35, image: "https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?w=500" },
-            { id: 3, name: { ar: "ورق عنب بالزيت / يبرق", en: "Stuffed Grape Leaves (Yabraq)" }, category: { ar: "محاشي", en: "Mahshi" }, price: 30, image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=500" },
-            { id: 4, name: { ar: "كبة مقلية شامية (دزينة)", en: "Fried Syrian Kibbeh (Dozen)" }, category: { ar: "كبب", en: "Kibbeh" }, price: 40, image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500" },
-            { id: 5, name: { ar: "كبة لبنية متقنة", en: "Kibbeh in Yogurt Sauce (Labaniyeh)" }, category: { ar: "كبب", en: "Kibbeh" }, price: 45, image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=500" },
-            { id: 6, name: { ar: "كبة بالسفرجلية", en: "Kibbeh with Quince Sauce" }, category: { ar: "كبب", en: "Kibbeh" }, price: 50, image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=500" },
-            { id: 7, name: { ar: "شاكرية باللحمة واللبن", en: "Shakriyeh Meat with Yogurt Sauce" }, category: { ar: "أطباق رئيسية", en: "Main Dishes" }, price: 45, image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=500" },
-            { id: 8, name: { ar: "فريكة بالدجاج واللوز", en: "Freekeh with Chicken & Almonds" }, category: { ar: "أطباق رئيسية", en: "Main Dishes" }, price: 40, image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=500" },
-            { id: 9, name: { ar: "تبولة شامية بالرمان", en: "Syrian Tabbouleh with Pomegranate" }, category: { ar: "مقبلات", en: "Appetizers" }, price: 18, image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500" },
-            { id: 10, name: { ar: "فتوش بالمحمّص والسمّاق", en: "Fattoush Salad with Sumac" }, category: { ar: "مقبلات", en: "Appetizers" }, price: 18, image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500" },
-            { id: 11, name: { ar: "حمص بطحينة وزيت زيتون", en: "Hummus with Olive Oil" }, category: { ar: "مقبلات", en: "Appetizers" }, price: 15, image: "https://images.unsplash.com/photo-1577968897966-3d4325b36b61?w=500" },
-            { id: 12, name: { ar: "بقلاوة بالفستق الحلبي", en: "Pistachio Baklava" }, category: { ar: "حلويات", en: "Desserts" }, price: 35, image: "https://images.unsplash.com/photo-1519676867240-f03562e64548?w=500" }
+            // الكبب
+            { id: 1, name: { ar: "قرص كبة مشوية", en: "Grilled Kibbeh Piece" }, category: { ar: "الكبب", en: "Kibbeh" }, price: 5, image: "images/kibbehmish.jpg" },
+            { id: 2, name: { ar: "قرص كبة لبنية", en: "Kibbeh in Yogurt Piece" }, category: { ar: "الكبب", en: "Kibbeh" }, price: 2, image: "images/kibbehlaban.jpg" },
+            { id: 3, name: { ar: "قرص كبة مقلية", en: "Fried Kibbeh Piece" }, category: { ar: "الكبب", en: "Kibbeh" }, price: 3, image: "images/kibbehmaqli.jpg" },
+            { id: 4, name: { ar: "كبة بالصينية", en: "Kibbeh bil-Sayniya" }, category: { ar: "الكبب", en: "Kibbeh" }, price: 50, image: "images/kibbehseniya.jpg" },
+            { id: 5, name: { ar: "صحن كبة نية", en: "Raw Kibbeh Plate" }, category: { ar: "الكبب", en: "Kibbeh" }, price: 40, image: "images/kibbehnaya.jpg" },
+
+            // الشيشبرك
+            { id: 6, name: { ar: "شيشبرك 100 حبة (غير مطبوخ)", en: "Shishbarak 100 pcs (Uncooked)" }, category: { ar: "الشيشبرك", en: "Shishbarak" }, price: 70, image: "images/sheshberakno.jpg" },
+            { id: 7, name: { ar: "شيشبرك 50 حبة (مطبوخ باللبن)", en: "Shishbarak 50 pcs (Cooked in Yogurt)" }, category: { ar: "الشيشبرك", en: "Shishbarak" }, price: 80, image: "images/sheshberak.jpg" },
+
+            // المعجنات
+            { id: 8, name: { ar: "حبة البرك (جبنة)", en: "Cheese Borek Piece" }, category: { ar: "المعجنات", en: "Pastries" }, price: 1.5, image: "images/berakjebna.jpg" },
+            { id: 9, name: { ar: "حبة البرك (لحم)", en: "Meat Borek Piece" }, category: { ar: "المعجنات", en: "Pastries" }, price: 1.5, image: "images/beraklaham.jpg" },
+            { id: 10, name: { ar: "حبة البرك (سبانغ)", en: "Spinach Borek Piece" }, category: { ar: "المعجنات", en: "Pastries" }, price: 1.5, image: "images/beraksabanekh.jpg" },
+            { id: 11, name: { ar: "السمبوسة (جبن)", en: "Cheese Sambousek" }, category: { ar: "المعجنات", en: "Pastries" }, price: 1.5, image: "images/sembosajobon.jpg" },
+            { id: 12, name: { ar: "السمبوسة (لحم)", en: "Meat Sambousek" }, category: { ar: "المعجنات", en: "Pastries" }, price: 1.5, image: "images/sembosa.jpg" },
+            { id: 13, name: { ar: "سندويشة المسخن", en: "Musakhan Sandwich" }, category: { ar: "المعجنات", en: "Pastries" }, price: 1.5, image: "images/msakhan1.jpg" },
+            { id: 14, name: { ar: "البيتزا الصغيرة", en: "Small Pizza" }, category: { ar: "المعجنات", en: "Pastries" }, price: 1.5, image: "images/pizzasmall.jpg" },
+            { id: 15, name: { ar: "البيتزا وسط", en: "Medium Pizza" }, category: { ar: "المعجنات", en: "Pastries" }, price: 40, image: "images/pizzamid.jpg" },
+            { id: 16, name: { ar: "عش البلبل", en: "Eish Al-Bolbol" }, category: { ar: "المعجنات", en: "Pastries" }, price: 5, image: "images/eishalbolbol.jpg" },
+            { id: 17, name: { ar: "فطيرة تركية (دجاج وفطر)", en: "Turkish Pie (Chicken & Mushroom)" }, category: { ar: "المعجنات", en: "Pastries" }, price: 50, image: "images/terkijaj.jpg" },
+            { id: 18, name: { ar: "فطيرة تركية (باللحمة والخضار)", en: "Turkish Pie (Meat & Veggies)" }, category: { ar: "المعجنات", en: "Pastries" }, price: 50, image: "images/terkilahma.jpg" },
+
+            // مقبلات
+            { id: 19, name: { ar: "صحن معكرونة (بشاميل أو لازانيا)", en: "Pasta Plate (Bechamel or Lasagna)" }, category: { ar: "مقبلات", en: "Appetizers" }, price: 50, image: "images/bashamel.jpg" },
+            { id: 20, name: { ar: "حراق بأصبعو (كبير)", en: "Hraq Osbao (Large)" }, category: { ar: "مقبلات", en: "Appetizers" }, price: 40, image: "images/esbaaobig.jpg" },
+            { id: 21, name: { ar: "حراق بأصبعو (صغير)", en: "Hraq Osbao (Small)" }, category: { ar: "مقبلات", en: "Appetizers" }, price: 25, image: "images/esbaaosmall.jpg" },
+            { id: 22, name: { ar: "صحن تبولة", en: "Tabbouleh Plate" }, category: { ar: "مقبلات", en: "Appetizers" }, price: 40, image: "images/tabola.jpg" },
+            { id: 23, name: { ar: "صحن فتوش", en: "Fattoush Plate" }, category: { ar: "مقبلات", en: "Appetizers" }, price: 40, image: "images/fatosh.jpg" },
+            { id: 24, name: { ar: "صحن سلطة", en: "Green Salad Plate" }, category: { ar: "مقبلات", en: "Appetizers" }, price: 40, image: "images/salata.jpg" },
+            { id: 25, name: { ar: "صحن بابا غنوج", en: "Baba Ganoush Plate" }, category: { ar: "مقبلات", en: "Appetizers" }, price: 30, image: "images/babaghanug.jpg" },
+            { id: 26, name: { ar: "صحن متبل", en: "Mtabbal Plate" }, category: { ar: "مقبلات", en: "Appetizers" }, price: 30, image: "images/mtabal.jpg" },
+            { id: 27, name: { ar: "صحن فرنسي مشكل", en: "French Mixed Plate" }, category: { ar: "مقبلات", en: "Appetizers" }, price: 30, image: "images/fransi.jpg" },
+
+            // اليالنجي وورق العنب
+            { id: 28, name: { ar: "كيلو يالنجي (بدون طبخ)", en: "Yalangi KG (Uncooked)" }, category: { ar: "اليالنجي وورق العنب", en: "Yalangi & Vine Leaves" }, price: 50, image: "images/yalangino.jpg" },
+            { id: 29, name: { ar: "كيلو يالنجي (مطبوخ)", en: "Yalangi KG (Cooked)" }, category: { ar: "اليالنجي وورق العنب", en: "Yalangi & Vine Leaves" }, price: 55, image: "images/yalangi.jpg" },
+            { id: 30, name: { ar: "كيلو ورق عنب (بدون طبخ)", en: "Vine Leaves KG (Uncooked)" }, category: { ar: "اليالنجي وورق العنب", en: "Yalangi & Vine Leaves" }, price: 60, image: "images/yabrak.jpg" },
+            { id: 31, name: { ar: "كيلو ورق عنب (مطبوخ)", en: "Vine Leaves KG (Cooked)" }, category: { ar: "اليالنجي وورق العنب", en: "Yalangi & Vine Leaves" }, price: 65, image: "images/yabrak.jpg" },
+            { id: 32, name: { ar: "كيلو يالنجي ملفوف (مطبوخ)", en: "Rolled Yalangi KG (Cooked)" }, category: { ar: "اليالنجي وورق العنب", en: "Yalangi & Vine Leaves" }, price: 65, image: "images/yalangimalfof.jpg" },
+            { id: 33, name: { ar: "كيلو يالنجي ملفوف (بدون طبخ)", en: "Rolled Yalangi KG (Uncooked)" }, category: { ar: "اليالنجي وورق العنب", en: "Yalangi & Vine Leaves" }, price: 55, image: "images/yalangimalfof.jpg" },
+
+            // المناسف
+            { id: 34, name: { ar: "منسف رز كبسة مع دجاج", en: "Kabsa Rice Mansaf with Chicken" }, category: { ar: "المناسف", en: "Mansaf" }, price: 0, image: "images/mansafkabsah.jpg" },
+            { id: 35, name: { ar: "منسف فريكة مع لحم أو دجاج", en: "Freekeh Mansaf with Meat/Chicken" }, category: { ar: "المناسف", en: "Mansaf" }, price: 0, image: "images/mansaffrekah.jpg" },
+            { id: 36, name: { ar: "منسف رز بزاليا مع دجاج او لحمة", en: "Peas Rice Mansaf with Chicken/Meat" }, category: { ar: "المناسف", en: "Mansaf" }, price: 0, image: "images/mansafbazalia.jpg" },
+
+            // كوسا ومحاشي
+            { id: 37, name: { ar: "كيلو كوسا بلبن", en: "Zucchini in Yogurt KG" }, category: { ar: "كوسا ومحاشي", en: "Zucchini & Mahshi" }, price: 60, image: "images/kosalaban.jpg" },
+            { id: 38, name: { ar: "كيلو كوسا محشي", en: "Stuffed Zucchini KG" }, category: { ar: "كوسا ومحاشي", en: "Zucchini & Mahshi" }, price: 60, image: "images/kosamahshi.jpg" },
+            { id: 39, name: { ar: "كيلو بيتنجان محشي", en: "Stuffed Eggplant KG" }, category: { ar: "كوسا ومحاشي", en: "Zucchini & Mahshi" }, price: 60, image: "images/betenjan.jpg" },
+            { id: 40, name: { ar: "صحن رز بشعيرية", en: "Vermicelli Rice Plate" }, category: { ar: "كوسا ومحاشي", en: "Zucchini & Mahshi" }, price: 30, image: "images/rzz.jpg" },
+            { id: 41, name: { ar: "صحن برغل بشعيرية", en: "Vermicelli Bulgur Plate" }, category: { ar: "كوسا ومحاشي", en: "Zucchini & Mahshi" }, price: 30, image: "images/borghol.jpg" },
+
+            // كاسات
+            { id: 42, name: { ar: "كاسة تبولة", en: "Tabbouleh Cup" }, category: { ar: "كاسات", en: "Cups" }, price: 5, image: "images/kasahtaboleh.jpg" },
+            { id: 43, name: { ar: "كاسة حراق بأصبعو", en: "Hraq Osbao Cup" }, category: { ar: "كاسات", en: "Cups" }, price: 5, image: "images/kasahharak.jpg" },
+            { id: 44, name: { ar: "كاسة يالنجي", en: "Yalangi Cup" }, category: { ar: "كاسات", en: "Cups" }, price: 5, image: "images/kasahyalangi.jpg" },
+            { id: 45, name: { ar: "كاسة شيشبرك", en: "Shishbarak Cup" }, category: { ar: "كاسات", en: "Cups" }, price: 5, image: "images/kasahsheshbera.jpg" }
         ];
 
         let activeCategory = "الكل";
 
-        // استماع وتحميل التقييمات بالوقت الفعلي من Firebase Firestore
+        // Firebase Reviews Sync
         let allReviewsCache = [];
-
         const qReviews = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
         onSnapshot(qReviews, (snapshot) => {
             allReviewsCache = [];
@@ -632,7 +692,7 @@
             const approvedReviews = allReviewsCache.filter(r => r.approved);
             
             if (approvedReviews.length === 0) {
-                list.innerHTML = `<div class="col-span-3 text-center text-gray-400 py-4">لا توجد تقييمات معروضة حالياً.</div>`;
+                list.innerHTML = `<div class="col-span-3 text-center text-gray-400 py-4">${currentLang === 'ar' ? 'لا توجد تقييمات معروضة حالياً.' : 'No reviews displayed currently.'}</div>`;
                 return;
             }
 
@@ -665,7 +725,7 @@
                     createdAt: new Date()
                 });
                 document.getElementById('reviewForm').reset();
-                alert(currentLang === 'ar' ? 'شكراً لك! تم إرسال تقييمك بنجاح، وسوف يتم عرضه بعد مراجعة الإدارة ❤️' : 'Thank you! Your review was submitted for review ❤️');
+                alert(currentLang === 'ar' ? 'شكراً لك! تم إرسال تقييمك بنجاح، وسوف يتم عرضه بعد مراجعة الإدارة ❤️' : 'Thank you! Your review was submitted successfully ❤️');
             } catch (error) {
                 console.error("خطأ في إضافة التقييم:", error);
                 alert("حدث خطأ أثناء إرسال التقييم.");
@@ -690,7 +750,7 @@
             const container = document.getElementById('adminReviewsList');
             if (!container) return;
             if (allReviewsCache.length === 0) {
-                container.innerHTML = `<p class="text-center text-gray-400">لا يوجد تقييمات للتحكم بها.</p>`;
+                container.innerHTML = `<p class="text-center text-gray-400">لا يوجد تقييمات.</p>`;
                 return;
             }
 
@@ -715,20 +775,12 @@
         };
 
         window.approveReview = async function(id) {
-            try {
-                await updateDoc(doc(db, "reviews", id), { approved: true });
-            } catch (error) {
-                console.error("خطأ في الموافقة:", error);
-            }
+            try { await updateDoc(doc(db, "reviews", id), { approved: true }); } catch (e) { console.error(e); }
         };
 
         window.deleteReview = async function(id) {
-            if (confirm('هل أنت متأكد من حذف هذا التقييم نهائياً؟')) {
-                try {
-                    await deleteDoc(doc(db, "reviews", id));
-                } catch (error) {
-                    console.error("خطأ في الحذف:", error);
-                }
+            if (confirm('هل أنت متأكد من حذف هذا التقييم؟')) {
+                try { await deleteDoc(doc(db, "reviews", id)); } catch (e) { console.error(e); }
             }
         };
 
@@ -783,14 +835,16 @@
             
             grid.innerHTML = itemsToDisplay.map(item => `
                 <div class="glass-card rounded-2xl overflow-hidden flex flex-col hover:border-brand-light/50 transition">
-                    <img src="${item.image}" alt="${item.name[currentLang]}" class="h-44 w-full object-cover cursor-pointer hover:scale-105 transition duration-300" onclick="openLightbox('${item.image}', '${item.name[currentLang]}')">
+                    <img src="${item.image}" alt="${item.name[currentLang]}" class="h-44 w-full object-cover cursor-pointer hover:scale-105 transition duration-300" onclick="openLightbox('${item.image}', '${item.name[currentLang]}')" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=500'">
                     <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
                         <div>
                             <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-light/10 text-brand-light dark:text-brand-dark">${item.category[currentLang]}</span>
                             <h3 class="font-bold text-base mt-1">${item.name[currentLang]}</h3>
                         </div>
                         <div class="flex items-center justify-between pt-2">
-                            <span class="font-black text-lg text-brand-light dark:text-brand-dark">${item.price} <small class="text-xs">${TRANSLATIONS[currentLang].currency}</small></span>
+                            <span class="font-black text-base sm:text-lg text-brand-light dark:text-brand-dark">
+                                ${item.price === 0 ? TRANSLATIONS[currentLang].asOrdered : item.price + ' <small class="text-xs">' + TRANSLATIONS[currentLang].currency + '</small>'}
+                            </span>
                             <button onclick="addToCart(${item.id})" class="px-3 py-1.5 rounded-xl bg-brand-light hover:bg-brand-light/90 text-white font-bold text-xs flex items-center gap-1 shadow-sm">
                                 <span>${TRANSLATIONS[currentLang].addBtn}</span>
                             </button>
@@ -825,14 +879,23 @@
 
         window.updateCartUI = function() {
             const count = Object.values(cart).reduce((sum, item) => sum + item.qty, 0);
-            const total = Object.values(cart).reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const subtotal = Object.values(cart).reduce((sum, item) => sum + (item.price * item.qty), 0);
+            
+            const emirateSelect = document.getElementById('custEmirate');
+            const selectedEmirate = emirateSelect ? emirateSelect.value : 'الشارقة';
+            const deliveryFee = (selectedEmirate === 'دبي') ? 25 : 20;
+            const total = subtotal + deliveryFee;
 
             const badge = document.getElementById('cartBadge');
             const floatingBadge = document.getElementById('floatingCartBadge');
+            const cartSubtotal = document.getElementById('cartSubtotal');
+            const cartDelivery = document.getElementById('cartDelivery');
             const cartTotal = document.getElementById('cartTotal');
             
             if (badge) badge.textContent = count;
             if (floatingBadge) floatingBadge.textContent = count;
+            if (cartSubtotal) cartSubtotal.textContent = `${subtotal} ${TRANSLATIONS[currentLang].currency}`;
+            if (cartDelivery) cartDelivery.textContent = `${deliveryFee} ${TRANSLATIONS[currentLang].currency}`;
             if (cartTotal) cartTotal.textContent = `${total} ${TRANSLATIONS[currentLang].currency}`;
 
             const cartContainer = document.getElementById('cartItems');
@@ -845,7 +908,7 @@
                     <div class="flex items-center justify-between bg-gray-100 dark:bg-gray-800 p-2.5 rounded-xl text-xs">
                         <div class="font-bold flex-1">${item.name[currentLang]}</div>
                         <div class="flex items-center gap-2">
-                            <span class="text-brand-light dark:text-brand-dark font-black">${item.price * item.qty} ${TRANSLATIONS[currentLang].currency}</span>
+                            <span class="text-brand-light dark:text-brand-dark font-black">${item.price === 0 ? TRANSLATIONS[currentLang].asOrdered : (item.price * item.qty) + ' ' + TRANSLATIONS[currentLang].currency}</span>
                             <div class="flex items-center border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-900">
                                 <button onclick="changeQty(${item.id}, -1)" class="px-2 py-0.5 font-bold hover:bg-gray-200 dark:hover:bg-gray-800">-</button>
                                 <span class="px-2 font-bold">${item.qty}</span>
@@ -887,11 +950,7 @@
         function setPickedLocation(lat, lng) {
             pickedLat = lat; 
             pickedLng = lng;
-            
-            if (locStatus) {
-                locStatus.classList.remove('hidden');
-            }
-            
+            if (locStatus) locStatus.classList.remove('hidden');
             if (leafletMap) {
                 if (leafletMarker) {
                     leafletMarker.setLatLng([lat, lng]);
@@ -904,21 +963,10 @@
 
         function initMapIfNeeded() {
             if (leafletMap || !mapPickerEl) return;
-
             leafletMap = L.map(mapPickerEl).setView([25.2048, 55.2708], 11);
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '© OpenStreetMap'
-            }).addTo(leafletMap);
-
-            leafletMap.on('click', (e) => {
-                setPickedLocation(e.latlng.lat, e.latlng.lng);
-            });
-
-            if (pickedLat !== null && pickedLng !== null) {
-                setPickedLocation(pickedLat, pickedLng);
-            }
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(leafletMap);
+            leafletMap.on('click', (e) => { setPickedLocation(e.latlng.lat, e.latlng.lng); });
+            if (pickedLat !== null && pickedLng !== null) setPickedLocation(pickedLat, pickedLng);
         }
 
         const toggleMapBtn = document.getElementById('toggleMapBtn');
@@ -926,10 +974,7 @@
             toggleMapBtn.addEventListener('click', () => {
                 mapPickerEl.classList.toggle('hidden');
                 if (!mapPickerEl.classList.contains('hidden')) {
-                    setTimeout(() => {
-                        initMapIfNeeded();
-                        if (leafletMap) leafletMap.invalidateSize();
-                    }, 100);
+                    setTimeout(() => { initMapIfNeeded(); if (leafletMap) leafletMap.invalidateSize(); }, 100);
                 }
             });
         }
@@ -937,30 +982,18 @@
         const useGpsBtn = document.getElementById('useGpsBtn');
         if (useGpsBtn) {
             useGpsBtn.addEventListener('click', () => {
-                if (!navigator.geolocation) {
-                    alert(currentLang === 'ar' ? 'المتصفح لا يدعم تحديد الموقع الحالي.' : 'Browser geolocation is not supported.');
-                    return;
-                }
-
+                if (!navigator.geolocation) { alert('المتصفح لا يدعم تحديد الموقع.'); return; }
                 const originalText = useGpsBtn.innerHTML;
-                useGpsBtn.innerText = currentLang === 'ar' ? "⏳ جاري جلب الموقع..." : "⏳ Fetching location...";
-
+                useGpsBtn.innerText = "⏳ جاري جلب الموقع...";
                 mapPickerEl.classList.remove('hidden');
-                setTimeout(() => {
-                    initMapIfNeeded();
-                    if (leafletMap) leafletMap.invalidateSize();
-                }, 100);
+                setTimeout(() => { initMapIfNeeded(); if (leafletMap) leafletMap.invalidateSize(); }, 100);
 
                 navigator.geolocation.getCurrentPosition(
                     (pos) => {
                         useGpsBtn.innerHTML = originalText;
-                        const { latitude, longitude } = pos.coords;
-                        setPickedLocation(latitude, longitude);
+                        setPickedLocation(pos.coords.latitude, pos.coords.longitude);
                     },
-                    (err) => {
-                        useGpsBtn.innerHTML = originalText;
-                        alert(currentLang === 'ar' ? 'تعذّر الوصول لموقعك الحالي.' : 'Unable to access your current location.');
-                    },
+                    () => { useGpsBtn.innerHTML = originalText; alert('تعذّر الوصول لموقعك الحالي.'); },
                     { enableHighAccuracy: true, timeout: 10000 }
                 );
             });
@@ -969,40 +1002,41 @@
         window.sendOrderToWhatsApp = function(e) {
             e.preventDefault();
             const keys = Object.keys(cart);
-            if (keys.length === 0) {
-                alert(currentLang === 'ar' ? 'السلة فارغة! أضف بضع الأطباق أولاً.' : 'Cart is empty!');
-                return;
-            }
+            if (keys.length === 0) { alert('السلة فارغة!'); return; }
 
             const name = document.getElementById('custName').value.trim();
             const phone = document.getElementById('custPhone').value.trim();
             const emirateSelect = document.getElementById('custEmirate');
-            const selectedEmirateText = emirateSelect.options[emirateSelect.selectedIndex].text;
+            const selectedEmirate = emirateSelect.value;
+            const deliveryFee = (selectedEmirate === 'دبي') ? 25 : 20;
             const address = document.getElementById('custAddress').value.trim();
             const notes = document.getElementById('orderNotes').value.trim();
 
-            let total = Object.values(cart).reduce((sum, item) => sum + (item.price * item.qty), 0);
+            let subtotal = Object.values(cart).reduce((sum, item) => sum + (item.price * item.qty), 0);
+            let total = subtotal + deliveryFee;
 
-            let msg = currentLang === 'ar' ? `مرحباً أم موفق 🌹 أرغب بطلب الآتي:%0A%0A` : `Hello Um Mowaffak 🌹 I would like to order:%0A%0A`;
+            let msg = `مرحباً أم موفق 🌹 أرغب بطلب الآتي:%0A%0A`;
             Object.values(cart).forEach(item => {
-                msg += `• ${item.name[currentLang]} × ${item.qty} = ${item.price * item.qty} ${TRANSLATIONS[currentLang].currency}%0A`;
+                msg += `• ${item.name[currentLang]} × ${item.qty} = ${item.price === 0 ? 'حسب الطلب' : (item.price * item.qty) + ' ' + TRANSLATIONS[currentLang].currency}%0A`;
             });
 
-            msg += `%0A💰 *${currentLang === 'ar' ? 'الإجمالي النهائي:' : 'Total Amount:'}* ${total} ${TRANSLATIONS[currentLang].currency}%0A`;
-            msg += `%0A📋 *${currentLang === 'ar' ? 'بيانات الزبون:' : 'Customer Details:'}*`;
-            msg += `%0A👤 ${currentLang === 'ar' ? 'الاسم:' : 'Name:'} ${encodeURIComponent(name)}`;
-            msg += `%0A📞 ${currentLang === 'ar' ? 'الهاتف:' : 'Phone:'} ${encodeURIComponent(phone)}`;
-            msg += `%0A📍 ${currentLang === 'ar' ? 'الإمارة:' : 'Emirate:'} ${encodeURIComponent(selectedEmirateText)}`;
-            if (address) msg += `%0A🏠 ${currentLang === 'ar' ? 'العنوان:' : 'Address:'} ${encodeURIComponent(address)}`;
-            if (notes) msg += `%0A📝 ${currentLang === 'ar' ? 'الملاحظات:' : 'Notes:'} ${encodeURIComponent(notes)}`;
+            msg += `%0A📦 *مجموع الأطباق:* ${subtotal} ${TRANSLATIONS[currentLang].currency}`;
+            msg += `%0A🚗 *التوصيل (${selectedEmirate}):* ${deliveryFee} ${TRANSLATIONS[currentLang].currency}`;
+            msg += `%0A💰 *الإجمالي النهائي:* ${total} ${TRANSLATIONS[currentLang].currency}%0A`;
+            msg += `%0A📋 *بيانات الزبون:*`;
+            msg += `%0A👤 الاسم: ${encodeURIComponent(name)}`;
+            msg += `%0A📞 الهاتف: ${encodeURIComponent(phone)}`;
+            msg += `%0A📍 الإمارة: ${encodeURIComponent(selectedEmirate)}`;
+            if (address) msg += `%0A🏠 العنوان: ${encodeURIComponent(address)}`;
+            if (notes) msg += `%0A📝 الملاحظات: ${encodeURIComponent(notes)}`;
             if (pickedLat !== null && pickedLng !== null) {
-                msg += `%0A🗺️ ${currentLang === 'ar' ? 'الموقع:' : 'Location:'} https://maps.google.com/?q=${pickedLat},${pickedLng}`;
+                msg += `%0A🗺️ الموقع: https://maps.google.com/?q=${pickedLat},${pickedLng}`;
             }
 
-             window.open(`https://wa.me/971552210433?text=${msg}`, '_blank');
+            window.open(`https://wa.me/971552210433?text=${msg}`, '_blank');
         };
 
-        // إقلاع الصفحة وتطبيق اللغة المخزنة
+        // تفعيل الترجمة عند الإقلاع
         applyLanguage();
     </script>
 </body>
