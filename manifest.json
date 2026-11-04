@@ -1,14 +1,14 @@
 {
   "name": "Syrian Cuisine",
   "short_name": "Syrian Cuisine",
-  "start_url": "/",
+  "start_url": "/Chef_Um_mowafak",
   "display": "standalone",
   "background_color": "#0a1118",
   "theme_color": "#00e5c8",
   "description": "مطبخ الشيف أم موفق للأكلات الشامية والمنزلية الأصيلة في الإمارات، يرجى تأكيد الطلب قبل يومين على الأقل.",
   "dir": "ltr",
   "orientation": "any",
-  "scope": "/",
+  "scope": "/Chef_Um_mowafak",
   "icons": [
     {
       "src": "logo.png",
