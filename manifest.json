@@ -1,0 +1,41 @@
+{
+  "background_color": "#00e5c8",
+  "description": "مطبخ الشيف أم موفق للأكلات الشامية والمنزلية الأصيلة في الإمارات، يرجى تأكيد الطلب قبل يومين على الأقل.",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Syrian Cuisine",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Syrian Cuisine",
+  "start_url": "/",
+  "theme_color": "#0a1118",
+  "icons": [
+    {
+      "src": "https://jawad11-damas.github.io/Chef_Um_mowafak/logo.png",
+      "type": "image/jpeg",
+      "sizes": "715x710",
+      "isSquare": false,
+      "isPng": true,
+      "isWebp": false,
+      "isJpg": true,
+      "width": 715,
+      "is512x512": false,
+      "is256x256": false,
+      "is192x192": false
+    },
+    {
+      "src": "https://jawad11-damas.github.io/Chef_Um_mowafak/logo.png",
+      "type": "image/jpeg",
+      "sizes": "715x710",
+      "isSquare": false,
+      "isPng": true,
+      "isWebp": false,
+      "isJpg": true,
+      "width": 715,
+      "is512x512": false,
+      "is256x256": false,
+      "is192x192": false
+    }
+  ],
+  "id": "com.syrian.cuisine"
+}
