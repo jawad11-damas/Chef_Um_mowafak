@@ -1,24 +1,24 @@
 {
-  "name": "المطبخ السوري",
-  "short_name": "المطبخ السوري",
+  "الاسم": "المطبخ السوري"،
+  "short_name": "المطبخ السوري"،
   "start_url": "/",
-  "display": "standalone",
+  "عرض": "مستقل"،
   "background_color": "#0a1118",
   "theme_color": "#00e5c8",
-  "description": "مطبخ الشيف أم موفق لأكلات الشام والمنزلية الأصيلة في الإمارات، يرجى تأكيد الطلب قبل يومين على الأقل.",
+  "description": "مطبخ الشيف أم موفق لأكلات الشام والمنزلية الأصيلة في الإمارات، تأكد من الطلب مسبقاً على الأقل.",
   "dir": "ltr",
-  "orientation": "any",
-  "scope": "/",
-  "icons": [
+  "التوجّه": "أي"،
+  "نِطَاق": "/"،
+  "الأيقونات": [
     {
-      "src": "https://jawad11-damas.github.io/Chef_Um_mowafak/logo.png",
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "logo.png",
+      "الأحجام": "192x192"،
+      "النوع": "صورة/png"
     },
     {
-      "src": "https://jawad11-damas.github.io/Chef_Um_mowafak/logo.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "logo.png",
+      الأحجام: 512 × 512
+      "النوع": "صورة/png"
     }
   ],
   "id": "com.syrian.cuisine"
